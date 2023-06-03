@@ -58,5 +58,23 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 	}
 	yspd = 0;
 }
+
+//Sprite setting
+if (xspd == 0 && yspd == 0) //idle
+{
+	image_index = 0;
+}
+else if (xspd != 0 && yspd == 0) //running
+{
+	image_index = 1;
+}
+else if (yspd < 1) //jumping, with a small delay before falling sprite
+{
+	image_index = 2;
+}
+else if (yspd >= 1) //falling
+{
+	image_index = 3;
+}
 x += xspd;
 y += yspd;

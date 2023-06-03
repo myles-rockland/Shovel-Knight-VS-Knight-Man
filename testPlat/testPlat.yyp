@@ -40,7 +40,6 @@
     {"id":{"name":"sSolid","path":"sprites/sSolid/sSolid.yy",},},
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},},
     {"id":{"name":"tiles","path":"sprites/tiles/tiles.yy",},},
-    {"id":{"name":"skyBackground","path":"sprites/skyBackground/skyBackground.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [

@@ -20,6 +20,5 @@
     {"name":"sSolid","order":1,"path":"sprites/sSolid/sSolid.yy",},
     {"name":"oPlayer","order":1,"path":"objects/oPlayer/oPlayer.yy",},
     {"name":"tiles","order":2,"path":"sprites/tiles/tiles.yy",},
-    {"name":"skyBackground","order":3,"path":"sprites/skyBackground/skyBackground.yy",},
   ],
 }
