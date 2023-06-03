@@ -3,6 +3,9 @@
 xspd = 0;
 yspd = 0;
 
-moveSpd = 2;
-jumpSpd = -12;
-grav = 1;
+initMoveSpd = 1;
+maxMoveSpd = 95/60;
+jumpSpd = -8.5; //8.5 for roughly 4.5 tile jump height
+grav = 0.5;
+
+initMoveCounter = 0;

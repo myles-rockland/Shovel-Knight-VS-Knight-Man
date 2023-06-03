@@ -3,17 +3,43 @@
 rightKey = keyboard_check(ord("D"));
 leftKey = keyboard_check(ord("A"));
 jumpKeyPressed = keyboard_check_pressed(vk_space);
+jumpKeyHeld = keyboard_check(vk_space);
 
-xspd = (rightKey - leftKey) * moveSpd;
+xspd = (rightKey - leftKey) * initMoveSpd;
+//Left bias if both held
+if (rightKey && leftKey)
+{
+	xspd = -1 * initMoveSpd;
+}
+//Start with slow movement speed for 3 frames
+if (initMoveCounter < 3 && xspd != 0)
+{
+	initMoveCounter++;
+}
+else if (xspd == 0)
+{
+	initMoveCounter = 0;
+}
+else
+{
+	xspd *= maxMoveSpd;
+}
 yspd += grav;
 
+//Jumping
 if (jumpKeyPressed && place_meeting(x, y + 1, oSolid))
 {
 	yspd = jumpSpd;
 }
+if (yspd < 0 && !jumpKeyHeld)
+{
+	yspd = max(yspd, -5);
+}
 
+//Collision checking
 if (place_meeting(x + xspd, y, oSolid))
 {
+	x = round(x);
 	var _pixelCheck = sign(xspd);
 	while !place_meeting(x + _pixelCheck, y, oSolid)
 	{
@@ -24,6 +50,7 @@ if (place_meeting(x + xspd, y, oSolid))
 
 if (place_meeting(x + xspd, y + yspd, oSolid))
 {
+	y = round(y);
 	var _pixelCheck = sign(yspd);
 	while !place_meeting(x + xspd, y + _pixelCheck, oSolid)
 	{
