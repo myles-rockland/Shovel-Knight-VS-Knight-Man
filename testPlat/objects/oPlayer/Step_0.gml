@@ -2,6 +2,7 @@
 // You can write your code in this editor
 rightKey = keyboard_check(ord("D"));
 leftKey = keyboard_check(ord("A"));
+downKey = keyboard_check(ord("S"));
 jumpKeyPressed = keyboard_check_pressed(vk_space);
 jumpKeyHeld = keyboard_check(vk_space);
 
@@ -54,6 +55,16 @@ if (yspd < 0 && !jumpKeyHeld)
 	yspd = max(yspd, -5);
 }
 
+//Pogoing
+if (!place_meeting(x, y + 1, oSolid) && downKey)
+{
+	pogoing = true;
+}
+else if (place_meeting(x, y + 1, oSolid))
+{
+	pogoing = false;
+}
+
 //Collision checking
 if (place_meeting(x + xspd, y, oSolid))
 {
@@ -81,12 +92,12 @@ x += xspd;
 y += yspd;
 
 //Sprite setting
-if (xspd == 0 && place_meeting(x, y + 1, oSolid) && turnAroundCounter == 0) //idle
+if (place_meeting(x, y + 1, oSolid) && xspd == 0 && turnAroundCounter == 0) //idle
 {
 	sprite_index = sPlayerIdle;
 	image_speed = 0;
 }
-else if (xspd != 0 && yspd == 0 && turnAroundCounter == 0) //running
+else if (place_meeting(x, y + 1, oSolid) && xspd != 0 && yspd == 0 && turnAroundCounter == 0) //running
 {
 	sprite_index = sPlayerRun;
 	image_speed = 1;
@@ -97,14 +108,19 @@ else if (turnAroundCounter != 0) //turning
 	image_speed = 0;
 	
 }
-else if (yspd < 2.5) //jumping, with a small delay before falling sprite
+else if (yspd < 2.5 && !pogoing) //jumping, with a small delay before falling sprite
 {
 	sprite_index = sPlayerJump;
 	image_speed = 0;
 }
-else if (yspd >= 2.5) //falling
+else if (yspd >= 2.5 && !pogoing) //falling
 {
 	sprite_index = sPlayerFall;
+	image_speed = 0;
+}
+else if (pogoing)
+{
+	sprite_index = sPlayerPogo;
 	image_speed = 0;
 }
 if (xspd < 0) //Flip sprite left

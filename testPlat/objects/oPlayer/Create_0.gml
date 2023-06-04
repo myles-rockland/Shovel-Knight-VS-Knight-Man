@@ -8,6 +8,7 @@ initMoveSpd = 1;
 maxMoveSpd = 95/60;
 jumpSpd = -8.5; //8.5 for roughly 4.5 tile jump height
 grav = 0.5;
+pogoing = false;
 
 initMoveCounter = 0;
 turnAroundBuffer = 0; //3 frames to input switch direction
