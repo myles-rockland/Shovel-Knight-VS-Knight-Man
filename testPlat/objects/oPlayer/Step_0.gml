@@ -1,10 +1,12 @@
-/// @description Insert description here
+/// @description Update every frame
 // You can write your code in this editor
 rightKey = keyboard_check(ord("D"));
 leftKey = keyboard_check(ord("A"));
 jumpKeyPressed = keyboard_check_pressed(vk_space);
 jumpKeyHeld = keyboard_check(vk_space);
 
+//Movement
+prevXSpd = xspd;
 xspd = (rightKey - leftKey) * initMoveSpd;
 //Left bias if both held
 if (rightKey && leftKey)
@@ -23,6 +25,22 @@ else if (xspd == 0)
 else
 {
 	xspd *= maxMoveSpd;
+}
+//Turning - currently causes weird teleport glitch
+//If their input direction switched from last frame, carry their momentum for 4 frames, then stop for 4 frames
+if ((place_meeting(x, y + 1, oSolid) && sign(prevXSpd) != 0 && sign(prevXSpd) * -1 == sign(xspd)) && turnAroundCounter == 0 || (turnAroundCounter > 0 && turnAroundCounter < 4))
+{
+	xspd = prevXSpd * 1/abs(prevXSpd);
+	turnAroundCounter++;
+}
+else if (turnAroundCounter >= 4 && turnAroundCounter < 8)
+{
+	xspd = 0;
+	turnAroundCounter++;
+}
+else
+{
+	turnAroundCounter = 0;
 }
 yspd += grav;
 
@@ -59,22 +77,41 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 	yspd = 0;
 }
 
-//Sprite setting
-if (xspd == 0 && yspd == 0) //idle
-{
-	image_index = 0;
-}
-else if (xspd != 0 && yspd == 0) //running
-{
-	image_index = 1;
-}
-else if (yspd < 1) //jumping, with a small delay before falling sprite
-{
-	image_index = 2;
-}
-else if (yspd >= 1) //falling
-{
-	image_index = 3;
-}
 x += xspd;
 y += yspd;
+
+//Sprite setting
+if (xspd == 0 && place_meeting(x, y + 1, oSolid) && turnAroundCounter == 0) //idle
+{
+	sprite_index = sPlayerIdle;
+	image_speed = 0;
+}
+else if (xspd != 0 && yspd == 0 && turnAroundCounter == 0) //running
+{
+	sprite_index = sPlayerRun;
+	image_speed = 1;
+}
+else if (turnAroundCounter != 0) //turning
+{
+	sprite_index = sPlayerTurn;
+	image_speed = 0;
+	
+}
+else if (yspd < 2.5) //jumping, with a small delay before falling sprite
+{
+	sprite_index = sPlayerJump;
+	image_speed = 0;
+}
+else if (yspd >= 2.5) //falling
+{
+	sprite_index = sPlayerFall;
+	image_speed = 0;
+}
+if (xspd < 0) //Flip sprite left
+{
+	image_xscale = -1;
+}
+else if (xspd > 0) //Flip sprite right
+{
+	image_xscale = 1;
+}

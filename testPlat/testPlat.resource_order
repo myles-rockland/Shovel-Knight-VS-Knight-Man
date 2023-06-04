@@ -17,8 +17,16 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"sPlayerCrouch","order":8,"path":"sprites/sPlayerCrouch/sPlayerCrouch.yy",},
+    {"name":"sPlayerJump","order":7,"path":"sprites/sPlayerJump/sPlayerJump.yy",},
+    {"name":"sPlayerRun","order":4,"path":"sprites/sPlayerRun/sPlayerRun.yy",},
+    {"name":"sPlayerTurn","order":9,"path":"sprites/sPlayerTurn/sPlayerTurn.yy",},
     {"name":"sSolid","order":1,"path":"sprites/sSolid/sSolid.yy",},
     {"name":"oPlayer","order":1,"path":"objects/oPlayer/oPlayer.yy",},
+    {"name":"sPlayerRunStart","order":5,"path":"sprites/sPlayerRunStart/sPlayerRunStart.yy",},
+    {"name":"sPlayerIdle","order":3,"path":"sprites/sPlayerIdle/sPlayerIdle.yy",},
     {"name":"tiles","order":2,"path":"sprites/tiles/tiles.yy",},
+    {"name":"sPlayerFall","order":6,"path":"sprites/sPlayerFall/sPlayerFall.yy",},
+    {"name":"sPlayerPogo","order":10,"path":"sprites/sPlayerPogo/sPlayerPogo.yy",},
   ],
 }
