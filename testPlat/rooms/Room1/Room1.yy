@@ -31,7 +31,7 @@
 31,-20,0,2,38,35,-23,0,2,38,35,-20,0,1,29,-3,30,1,35,-12,0,4,23,24,24,
 26,-7,0,2,38,35,-3,0,1,11,-6,0,6,23,26,45,46,46,48,-7,0,2,38,35,-3,
 0,1,33,-4,0,34,23,26,45,48,67,74,74,70,0,0,7,8,9,0,0,38,57,25,25,
-26,33,23,58,59,26,45,48,67,70,67,74,74,70,23,-6,25,1,60,],"TileDataFormat":1,},"tilesetId":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},"userdefinedDepth":false,"visible":false,"x":0,"y":0,},
+26,33,23,58,59,26,45,48,67,70,67,74,74,70,23,-6,25,1,60,],"TileDataFormat":1,},"tilesetId":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Instances","depth":100,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4D691B8D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":48.0,"y":192.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_711F757D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oSolid","path":"objects/oSolid/oSolid.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":2.0,"x":64.0,"y":160.0,},
