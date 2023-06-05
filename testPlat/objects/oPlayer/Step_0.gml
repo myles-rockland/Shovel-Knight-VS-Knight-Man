@@ -15,7 +15,7 @@ if (rightKey && leftKey)
 	xspd = -1 * initMoveSpd;
 }
 //Start with slow movement speed for 3 frames
-if (initMoveCounter < 3 && xspd != 0)
+if (initMoveCounter < 5 && xspd != 0)
 {
 	initMoveCounter++;
 }
@@ -90,6 +90,12 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 		y += _pixelCheck;
 	}
 	yspd = 0;
+}
+
+//Terminal falling velocity
+if (yspd > 6)
+{
+	yspd = 6;
 }
 
 x += xspd;

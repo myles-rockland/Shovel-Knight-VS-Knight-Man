@@ -26,6 +26,7 @@
     {"name":"sPlayerRunStart","order":5,"path":"sprites/sPlayerRunStart/sPlayerRunStart.yy",},
     {"name":"sPlayerIdle","order":3,"path":"sprites/sPlayerIdle/sPlayerIdle.yy",},
     {"name":"tiles","order":2,"path":"sprites/tiles/tiles.yy",},
+    {"name":"Room2","order":1,"path":"rooms/Room2/Room2.yy",},
     {"name":"sPlayerFall","order":6,"path":"sprites/sPlayerFall/sPlayerFall.yy",},
     {"name":"sPlayerPogo","order":10,"path":"sprites/sPlayerPogo/sPlayerPogo.yy",},
   ],
