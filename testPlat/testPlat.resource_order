@@ -17,6 +17,7 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"sPlayerAttack","order":11,"path":"sprites/sPlayerAttack/sPlayerAttack.yy",},
     {"name":"sPlayerCrouch","order":8,"path":"sprites/sPlayerCrouch/sPlayerCrouch.yy",},
     {"name":"sPlayerJump","order":7,"path":"sprites/sPlayerJump/sPlayerJump.yy",},
     {"name":"sPlayerRun","order":4,"path":"sprites/sPlayerRun/sPlayerRun.yy",},

@@ -5,6 +5,7 @@ leftKey = keyboard_check(ord("A"));
 downKey = keyboard_check(ord("S"));
 jumpKeyPressed = keyboard_check_pressed(vk_space);
 jumpKeyHeld = keyboard_check(vk_space);
+attackKeyPressed = keyboard_check_pressed(ord("J"));
 
 //Movement
 prevXSpd = xspd;
@@ -98,6 +99,13 @@ if (yspd > 6)
 	yspd = 6;
 }
 
+//Attacking
+if (place_meeting(x, y + 1, oSolid) && attackKeyPressed)
+{
+	attackCounter++;
+}
+
+//Applying movement
 x += xspd;
 y += yspd;
 
