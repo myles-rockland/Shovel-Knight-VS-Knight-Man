@@ -27,7 +27,7 @@ else
 {
 	xspd *= maxMoveSpd;
 }
-//Turning - currently causes weird teleport glitch
+//Turning - currently causes weird teleport glitch if you slide into a wall
 //If their input direction switched from last frame, carry their momentum for 4 frames, then stop for 4 frames
 if ((place_meeting(x, y + 1, oSolid) && sign(prevXSpd) != 0 && sign(prevXSpd) * -1 == sign(xspd)) && turnAroundCounter == 0 || (turnAroundCounter > 0 && turnAroundCounter < 4))
 {
@@ -41,6 +41,10 @@ else if (turnAroundCounter >= 4 && turnAroundCounter < 8)
 }
 else
 {
+	if (turnAroundCounter == 8)
+	{
+		image_xscale *= -1; //flip sprite at end
+	}
 	turnAroundCounter = 0;
 }
 yspd += grav;
