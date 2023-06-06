@@ -9,6 +9,7 @@ attackKeyPressed = keyboard_check_pressed(ord("J"));
 
 //Movement
 prevXSpd = xspd;
+prevYSpd = yspd;
 xspd = (rightKey - leftKey) * initMoveSpd;
 //Left bias if both held
 if (rightKey && leftKey)
@@ -70,6 +71,35 @@ else if (place_meeting(x, y + 1, oSolid))
 	pogoing = false;
 }
 
+//Terminal falling velocity
+if (yspd > 6)
+{
+	yspd = 6;
+}
+
+//Attacking - currently causes an issue with the animation
+if (attackKeyPressed && ((attackBuffered && attackCounter == 0) || attackCounter == 0))
+{
+	attackCounter++;
+	attackBuffered = false;
+}
+else if (attackCounter > 0 && attackCounter < 12)
+{
+	if (attackKeyPressed && attackCounter > 6)
+	{
+		attackBuffered = true;
+	}
+	attackCounter++;
+}
+if (attackCounter == 12)
+{
+	attackCounter = 0;
+}
+if (place_meeting(x, y + 1, oSolid) && attackCounter > 0)
+{
+	xspd = 0;
+}
+
 //Collision checking
 if (place_meeting(x + xspd, y, oSolid))
 {
@@ -93,18 +123,6 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 	yspd = 0;
 }
 
-//Terminal falling velocity
-if (yspd > 6)
-{
-	yspd = 6;
-}
-
-//Attacking
-if (place_meeting(x, y + 1, oSolid) && attackKeyPressed)
-{
-	attackCounter++;
-}
-
 //Applying movement
 x += xspd;
 y += yspd;
@@ -114,6 +132,11 @@ if (place_meeting(x, y + 1, oSolid) && xspd == 0 && turnAroundCounter == 0 && !d
 {
 	sprite_index = sPlayerIdle;
 	image_speed = 0;
+}
+if (attackCounter > 0) //Attack
+{
+	sprite_index = sPlayerAttack;
+	image_speed = 1;
 }
 else if (place_meeting(x, y + 1, oSolid) && xspd == 0 && turnAroundCounter == 0 && downKey) //crouch
 {
@@ -136,12 +159,12 @@ else if (turnAroundCounter != 0) //turning
 	image_speed = 0;
 	
 }
-else if (yspd < 2.5 && !pogoing) //jumping, with a small delay before falling sprite
+else if (!place_meeting(x, y + 1, oSolid) && yspd < 2.5 && !pogoing) //jumping, with a small delay before falling sprite
 {
 	sprite_index = sPlayerJump;
 	image_speed = 0;
 }
-else if (yspd >= 2.5 && !pogoing) //falling
+else if (!place_meeting(x, y + 1, oSolid) && yspd >= 2.5 && !pogoing) //falling
 {
 	sprite_index = sPlayerFall;
 	image_speed = 0;
