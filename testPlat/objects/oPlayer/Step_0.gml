@@ -77,21 +77,21 @@ if (yspd > 6)
 	yspd = 6;
 }
 
-//Attacking - currently causes an issue with the animation
-if (attackKeyPressed && ((attackBuffered && attackCounter == 0) || attackCounter == 0))
+//Attacking
+if (attackCounter == 0 && (attackKeyPressed || attackBuffered))
 {
 	attackCounter++;
 	attackBuffered = false;
 }
-else if (attackCounter > 0 && attackCounter < 12)
+else if (attackCounter > 0 && attackCounter < 21)
 {
-	if (attackKeyPressed && attackCounter > 6)
+	if (attackKeyPressed && attackCounter > 4)
 	{
 		attackBuffered = true;
 	}
 	attackCounter++;
 }
-if (attackCounter == 12)
+if (attackCounter == 21)
 {
 	attackCounter = 0;
 }
@@ -123,17 +123,24 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 	yspd = 0;
 }
 
+//Cancel attack
+if (prevYSpd > 0 && yspd == 0 || prevYSpd == 0 && yspd < 0)
+{
+	attackCounter = 0;
+	attackBuffered = false;
+}
+
 //Applying movement
 x += xspd;
 y += yspd;
 
 //Sprite setting
-if (place_meeting(x, y + 1, oSolid) && xspd == 0 && turnAroundCounter == 0 && !downKey) //idle
+if (place_meeting(x, y + 1, oSolid) && xspd == 0 && turnAroundCounter == 0 && !downKey && attackCounter == 0) //idle
 {
 	sprite_index = sPlayerIdle;
 	image_speed = 0;
 }
-if (attackCounter > 0) //Attack
+if (attackCounter > 0 || attackBuffered) //Attack
 {
 	sprite_index = sPlayerAttack;
 	image_speed = 1;
