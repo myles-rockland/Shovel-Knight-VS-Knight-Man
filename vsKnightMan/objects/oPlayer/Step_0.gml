@@ -150,7 +150,7 @@ else if (place_meeting(x, y + 1, oSolid) && xspd == 0 && turnAroundCounter == 0 
 	sprite_index = sPlayerCrouch;
 	image_speed = 0;
 }
-else if (place_meeting(x, y + 1, oSolid) && xspd == 1 && yspd == 0 && turnAroundCounter == 0) //running start
+else if (place_meeting(x, y + 1, oSolid) && (xspd == 1 || xspd == -1) && yspd == 0 && turnAroundCounter == 0) //running start
 {
 	sprite_index = sPlayerRunStart;
 	image_speed = 1;
