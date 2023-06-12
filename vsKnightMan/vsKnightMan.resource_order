@@ -21,8 +21,10 @@
   "ResourceOrderSettings": [
     {"name":"sPlayerAttack","order":1,"path":"sprites/sPlayerAttack/sPlayerAttack.yy",},
     {"name":"sPlayerCrouch","order":2,"path":"sprites/sPlayerCrouch/sPlayerCrouch.yy",},
+    {"name":"oEnemy","order":2,"path":"objects/oEnemy/oEnemy.yy",},
     {"name":"sPlayerJump","order":5,"path":"sprites/sPlayerJump/sPlayerJump.yy",},
     {"name":"sPlayerRun","order":7,"path":"sprites/sPlayerRun/sPlayerRun.yy",},
+    {"name":"sPlayerStunned","order":11,"path":"sprites/sPlayerStunned/sPlayerStunned.yy",},
     {"name":"sPlayerTurn","order":9,"path":"sprites/sPlayerTurn/sPlayerTurn.yy",},
     {"name":"sSolid","order":1,"path":"sprites/sSolid/sSolid.yy",},
     {"name":"oPlayer","order":1,"path":"objects/oPlayer/oPlayer.yy",},
@@ -32,5 +34,6 @@
     {"name":"Room2","order":1,"path":"rooms/Room2/Room2.yy",},
     {"name":"sPlayerFall","order":3,"path":"sprites/sPlayerFall/sPlayerFall.yy",},
     {"name":"sPlayerPogo","order":6,"path":"sprites/sPlayerPogo/sPlayerPogo.yy",},
+    {"name":"sPlayerDead","order":10,"path":"sprites/sPlayerDead/sPlayerDead.yy",},
   ],
 }

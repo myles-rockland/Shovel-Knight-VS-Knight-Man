@@ -122,6 +122,7 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 		y += _pixelCheck;
 	}
 	yspd = 0;
+	stunned = false;
 }
 
 //Cancel attack
@@ -131,17 +132,48 @@ if (prevYSpd > 0 && yspd == 0 || prevYSpd == 0 && yspd < 0)
 	attackBuffered = false;
 }
 
+//Enemy collision checking
+if (place_meeting(x + xspd, y, oEnemy) && !stunned)
+{
+	xspd = -image_xscale;
+	yspd = -4;
+	turnAroundCounter = 0;
+	attackCounter = 0;
+	stunned = true;
+}
+if (place_meeting(x + xspd, y + yspd, oEnemy) && !pogoing  && !stunned)
+{
+	xspd = -image_xscale;
+	yspd = -4;
+	turnAroundCounter = 0;
+	attackCounter = 0;
+	stunned = true;
+}
+else if (place_meeting(x + xspd, y + yspd, oEnemy) && pogoing)
+{
+	yspd = -8.5;
+}
+else if (stunned)
+{
+	xspd = prevXSpd;
+}
+
 //Applying movement
 x += xspd;
 y += yspd;
 
 //Sprite setting
-if (place_meeting(x, y + 1, oSolid) && xspd == 0 && turnAroundCounter == 0 && !downKey && attackCounter == 0) //idle
+if (stunned)
+{
+	sprite_index = sPlayerStunned;
+	image_speed = 0;
+}
+else if (place_meeting(x, y + 1, oSolid) && (!leftKey && !rightKey) && turnAroundCounter == 0 && !downKey && attackCounter == 0) //idle
 {
 	sprite_index = sPlayerIdle;
 	image_speed = 0;
 }
-if (attackCounter > 0 || attackBuffered) //Attack
+else if (attackCounter > 0 || attackBuffered) //Attack
 {
 	sprite_index = sPlayerAttack;
 	image_speed = 1;
@@ -156,7 +188,7 @@ else if (place_meeting(x, y + 1, oSolid) && (xspd == 1 || xspd == -1) && yspd ==
 	sprite_index = sPlayerRunStart;
 	image_speed = 1;
 }
-else if (place_meeting(x, y + 1, oSolid) && xspd != 0 && yspd == 0 && turnAroundCounter == 0) //running
+else if (place_meeting(x, y + 1, oSolid) && (rightKey || leftKey) && yspd == 0 && turnAroundCounter == 0) //running
 {
 	sprite_index = sPlayerRun;
 	image_speed = 1;
