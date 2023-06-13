@@ -13,6 +13,7 @@ pogoing = false;
 attackCounter = 0;
 attackBuffered = false;
 stunned = false;
+invulnerableCounter = 0;
 
 initMoveCounter = 0;
 turnAroundCounter = 0; //8 frames to switch running direction

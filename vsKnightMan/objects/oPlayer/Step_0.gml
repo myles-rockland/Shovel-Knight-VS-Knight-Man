@@ -56,17 +56,17 @@ if (jumpKeyPressed && place_meeting(x, y + 1, oSolid))
 {
 	yspd = jumpSpd;
 }
-if (yspd < 0 && !jumpKeyHeld)
+if (yspd < 0 && !jumpKeyHeld && !pogoing)
 {
 	yspd = max(yspd, -5);
 }
 
 //Pogoing
-if (!place_meeting(x, y + 1, oSolid) && downKey)
+if (!place_meeting(x, y + 1, oSolid) && downKey && attackCounter == 0)
 {
 	pogoing = true;
 }
-else if (place_meeting(x, y + 1, oSolid))
+else if (place_meeting(x, y + 1, oSolid) || stunned || attackCounter > 0)
 {
 	pogoing = false;
 }
@@ -126,28 +126,30 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 }
 
 //Cancel attack
-if (prevYSpd > 0 && yspd == 0 || prevYSpd == 0 && yspd < 0)
+if (prevYSpd > 0 && yspd == 0 || prevYSpd == 0 && yspd < 0 || stunned)
 {
 	attackCounter = 0;
 	attackBuffered = false;
 }
 
 //Enemy collision checking
-if (place_meeting(x + xspd, y, oEnemy) && !stunned)
+if (place_meeting(x + xspd, y, oEnemy) && !stunned && invulnerableCounter == 0)
 {
-	xspd = -image_xscale;
+	xspd = -image_xscale * 2;
 	yspd = -4;
 	turnAroundCounter = 0;
 	attackCounter = 0;
 	stunned = true;
+	invulnerableCounter++;
 }
-if (place_meeting(x + xspd, y + yspd, oEnemy) && !pogoing  && !stunned)
+else if (place_meeting(x + xspd, y + yspd, oEnemy) && !pogoing && !stunned && invulnerableCounter == 0)
 {
-	xspd = -image_xscale;
+	xspd = -image_xscale * 2;
 	yspd = -4;
 	turnAroundCounter = 0;
 	attackCounter = 0;
 	stunned = true;
+	invulnerableCounter++;
 }
 else if (place_meeting(x + xspd, y + yspd, oEnemy) && pogoing)
 {
@@ -156,6 +158,15 @@ else if (place_meeting(x + xspd, y + yspd, oEnemy) && pogoing)
 else if (stunned)
 {
 	xspd = prevXSpd;
+}
+if (invulnerableCounter > 0)
+{
+	invulnerableCounter++;
+	image_alpha = int64(invulnerableCounter % 3 == 0);
+	if (invulnerableCounter == 120)
+	{
+		invulnerableCounter = 0;
+	}
 }
 
 //Applying movement
@@ -214,11 +225,11 @@ else if (pogoing)
 	sprite_index = sPlayerPogo;
 	image_speed = 0;
 }
-if (xspd < 0) //Flip sprite left
+if (xspd != 0) //Flip sprite
 {
-	image_xscale = -1;
+	image_xscale = sign(xspd);
 }
-else if (xspd > 0) //Flip sprite right
+if (stunned)
 {
-	image_xscale = 1;
+	image_xscale *= -1;
 }
