@@ -123,6 +123,7 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 	}
 	yspd = 0;
 	stunned = false;
+	
 }
 
 //Cancel attack
@@ -141,6 +142,7 @@ if (place_meeting(x + xspd, y, oEnemy) && !stunned && invulnerableCounter == 0)
 	attackCounter = 0;
 	stunned = true;
 	invulnerableCounter++;
+	playerHealth--;
 }
 else if (place_meeting(x + xspd, y + yspd, oEnemy) && !pogoing && !stunned && invulnerableCounter == 0)
 {
@@ -150,6 +152,7 @@ else if (place_meeting(x + xspd, y + yspd, oEnemy) && !pogoing && !stunned && in
 	attackCounter = 0;
 	stunned = true;
 	invulnerableCounter++;
+	playerHealth--;
 }
 else if (place_meeting(x + xspd, y + yspd, oEnemy) && pogoing)
 {
@@ -169,12 +172,27 @@ if (invulnerableCounter > 0)
 	}
 }
 
+if (playerHealth == 0 && place_meeting(x, y + 1, oSolid) && !stunned)
+{
+	xspd = 0;
+	yspd = 0;
+}
+
 //Applying movement
 x += xspd;
 y += yspd;
 
 //Sprite setting
-if (stunned)
+if (playerHealth == 0 && place_meeting(x, y + 1, oSolid))
+{
+	sprite_index = sPlayerDead;
+	image_speed = 1;
+	if (image_index == 3)
+	{
+		image_speed = 0;
+	}
+}
+else if (stunned)
 {
 	sprite_index = sPlayerStunned;
 	image_speed = 0;
