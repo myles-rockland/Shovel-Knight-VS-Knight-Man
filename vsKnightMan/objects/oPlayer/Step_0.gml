@@ -134,25 +134,19 @@ if (prevYSpd > 0 && yspd == 0 || prevYSpd == 0 && yspd < 0 || stunned)
 }
 
 //Enemy collision checking
-if (place_meeting(x + xspd, y, oEnemy) && !stunned && invulnerableCounter == 0)
+if ((place_meeting(x + xspd, y, oEnemy) || (place_meeting(x + xspd, y + yspd, oEnemy) && !pogoing)) && !stunned && invulnerableCounter == 0)
 {
 	xspd = -image_xscale * 2;
-	yspd = -4;
+	yspd = -5;
 	turnAroundCounter = 0;
 	attackCounter = 0;
 	stunned = true;
 	invulnerableCounter++;
 	playerHealth--;
-}
-else if (place_meeting(x + xspd, y + yspd, oEnemy) && !pogoing && !stunned && invulnerableCounter == 0)
-{
-	xspd = -image_xscale * 2;
-	yspd = -4;
-	turnAroundCounter = 0;
-	attackCounter = 0;
-	stunned = true;
-	invulnerableCounter++;
-	playerHealth--;
+	if (playerHealth == 0)
+	{
+		yspd = -15;
+	}
 }
 else if (place_meeting(x + xspd, y + yspd, oEnemy) && pogoing)
 {
@@ -176,6 +170,7 @@ if (playerHealth == 0 && place_meeting(x, y + 1, oSolid) && !stunned)
 {
 	xspd = 0;
 	yspd = 0;
+	image_alpha = 1;
 }
 
 //Applying movement
