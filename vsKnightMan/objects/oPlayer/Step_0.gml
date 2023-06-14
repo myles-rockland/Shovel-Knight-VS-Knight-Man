@@ -142,8 +142,8 @@ if ((place_meeting(x + xspd, y, oEnemy) || (place_meeting(x + xspd, y + yspd, oE
 	attackCounter = 0;
 	stunned = true;
 	invulnerableCounter++;
-	playerHealth--;
-	if (playerHealth == 0)
+	currentHealth--;
+	if (currentHealth == 0)
 	{
 		yspd = -15;
 	}
@@ -166,7 +166,7 @@ if (invulnerableCounter > 0)
 	}
 }
 
-if (playerHealth == 0 && place_meeting(x, y + 1, oSolid) && !stunned)
+if (currentHealth == 0 && place_meeting(x, y + 1, oSolid) && !stunned)
 {
 	xspd = 0;
 	yspd = 0;
@@ -178,7 +178,7 @@ x += xspd;
 y += yspd;
 
 //Sprite setting
-if (playerHealth == 0 && place_meeting(x, y + 1, oSolid))
+if (currentHealth == 0 && place_meeting(x, y + 1, oSolid))
 {
 	sprite_index = sPlayerDead;
 	image_speed = 1;
