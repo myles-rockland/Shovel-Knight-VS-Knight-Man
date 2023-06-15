@@ -39,6 +39,7 @@
     "IDEVersion": "2023.4.0.84",
   },
   "resources": [
+    {"id":{"name":"oPlayerAttackHitbox","path":"objects/oPlayerAttackHitbox/oPlayerAttackHitbox.yy",},},
     {"id":{"name":"sSkMapMarker","path":"sprites/sSkMapMarker/sSkMapMarker.yy",},},
     {"id":{"name":"sPlayerAttack","path":"sprites/sPlayerAttack/sPlayerAttack.yy",},},
     {"id":{"name":"sDeathTallySpot","path":"sprites/sDeathTallySpot/sDeathTallySpot.yy",},},
@@ -54,6 +55,7 @@
     {"id":{"name":"sPlayerStunned","path":"sprites/sPlayerStunned/sPlayerStunned.yy",},},
     {"id":{"name":"oSolid","path":"objects/oSolid/oSolid.yy",},},
     {"id":{"name":"sPlayerTurn","path":"sprites/sPlayerTurn/sPlayerTurn.yy",},},
+    {"id":{"name":"sPlayerAttackHitbox","path":"sprites/sPlayerAttackHitbox/sPlayerAttackHitbox.yy",},},
     {"id":{"name":"sSolid","path":"sprites/sSolid/sSolid.yy",},},
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},},
     {"id":{"name":"sPlayerRunStart","path":"sprites/sPlayerRunStart/sPlayerRunStart.yy",},},

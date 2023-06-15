@@ -55,7 +55,7 @@ if (jumpKeyPressed && place_meeting(x, y + 1, oSolid))
 {
 	yspd = jumpSpd;
 }
-if (yspd < 0 && !jumpKeyHeld && !pogoing && !stunned)
+if (yspd < 0 && !jumpKeyHeld && !pogoing && !stunned && attackCounter == 0)
 {
 	yspd = max(yspd, yspd * (3/4));
 }
@@ -64,10 +64,12 @@ if (yspd < 0 && !jumpKeyHeld && !pogoing && !stunned)
 if (!place_meeting(x, y + 1, oSolid) && downKey && attackCounter == 0 && !stunned)
 {
 	pogoing = true;
+	instance_create_layer(x, y - 10, "Instances", oPlayerAttackHitbox);
 }
 else if (place_meeting(x, y + 1, oSolid) || stunned || attackCounter > 0)
 {
 	pogoing = false;
+	instance_destroy(oPlayerAttackHitbox);
 }
 
 //Terminal falling velocity
@@ -89,6 +91,14 @@ else if (attackCounter > 0 && attackCounter < 21)
 		attackBuffered = true;
 	}
 	attackCounter++;
+}
+if (attackCounter == 4)
+{
+	instance_create_layer(x + (image_xscale * 25), y - 16, "Instances", oPlayerAttackHitbox);
+}
+else if (attackCounter == 17)
+{
+	instance_destroy(oPlayerAttackHitbox);
 }
 if (attackCounter == 21)
 {
@@ -171,7 +181,12 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 		y += _pixelCheck;
 	}
 	yspd = 0;
-	stunned = false;
+	if (stunned)
+	{
+		stunned = false;
+		xspd = 0;
+		turnAroundCounter = 0;
+	}
 	
 }
 
