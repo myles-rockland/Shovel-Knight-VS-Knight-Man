@@ -23,6 +23,7 @@ invulnerableCounter = 0;
 deathCounter = 0; //Counts to 60, then does the death transition
 deathTransitionXPos = 400;
 resetCounter = 0; //Counts to 180, then does the "revive" transition
+mapAnimCounter = 0;
 
 initMoveCounter = 0;
 turnAroundCounter = 0; //8 frames to switch running direction

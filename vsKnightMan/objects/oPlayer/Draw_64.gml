@@ -27,6 +27,7 @@ for (var i = 0; i < numBubbles; i++)
 }
 
 //Drawing gold count
+draw_set_halign(fa_left);
 draw_text(12, 10, gold);
 
 //Drawing death transition
@@ -52,9 +53,20 @@ if (deathCounter == 60)
 	}
 	draw_sprite(sDeathTransition, 0, deathTransitionXPos, 0);
 }
+//Death Tally screen
 if (resetCounter > 0 && resetCounter < 180)
 {
 	draw_sprite(sDeathTransition, 0, deathTransitionXPos, 0);
+	draw_sprite(sDeathTallySpot, 0, 200, 100);
+	draw_sprite(sDeathTallySkull, 0, 200, 93);
+	if (resetCounter % 30 == 0)
+	{
+		mapAnimCounter++;
+	}
+	draw_sprite(sSkMapMarker, mapAnimCounter % 2, 200, 91);
+	draw_set_halign(fa_center);
+	draw_text(200, 10, "player");
+	draw_text(200, 20, gold);
 	resetCounter++;
 	x = 48;
 	y = 224;
@@ -67,6 +79,7 @@ if (resetCounter == 180)
 	if (deathTransitionXPos < -400)
 	{
 		resetCounter = 0;
+		deathTransitionXPos = 400;
 	}
 	draw_sprite(sDeathTransition, 0, deathTransitionXPos, 0);
 }
