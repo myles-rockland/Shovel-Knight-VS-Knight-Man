@@ -25,7 +25,10 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": null,
+  "spriteId": {
+    "name": "sDeathTransition",
+    "path": "sprites/sDeathTransition/sDeathTransition.yy",
+  },
   "spriteMaskId": null,
   "visible": true,
 }

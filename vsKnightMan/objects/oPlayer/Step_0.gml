@@ -49,20 +49,19 @@ else
 	}
 	turnAroundCounter = 0;
 }
-yspd += grav;
 
 //Jumping
 if (jumpKeyPressed && place_meeting(x, y + 1, oSolid))
 {
 	yspd = jumpSpd;
 }
-if (yspd < 0 && !jumpKeyHeld && !pogoing)
+if (yspd < 0 && !jumpKeyHeld && !pogoing && !stunned)
 {
-	yspd = max(yspd, -5);
+	yspd = max(yspd, yspd * (3/4));
 }
 
 //Pogoing
-if (!place_meeting(x, y + 1, oSolid) && downKey && attackCounter == 0)
+if (!place_meeting(x, y + 1, oSolid) && downKey && attackCounter == 0 && !stunned)
 {
 	pogoing = true;
 }
@@ -100,6 +99,56 @@ if (place_meeting(x, y + 1, oSolid) && attackCounter > 0)
 	xspd = 0;
 }
 
+//Cancel attack
+if (prevYSpd > 0 && yspd == 0 || prevYSpd == 0 && yspd < 0 || stunned)
+{
+	attackCounter = 0;
+	attackBuffered = false;
+}
+
+//Enemy collision checking
+if ((place_meeting(x + xspd, y, oEnemy) || (place_meeting(x + xspd, y + yspd, oEnemy) && !pogoing)) && !stunned && invulnerableCounter == 0 && currentHealth != 0)
+{
+	xspd = -image_xscale * 2;
+	yspd = -3;
+	turnAroundCounter = 0;
+	attackCounter = 0;
+	stunned = true;
+	invulnerableCounter++;
+	currentHealth--;
+	if (currentHealth == 0)
+	{
+		yspd = -5;
+	}
+}
+else if (place_meeting(x + xspd, y + yspd, oEnemy) && pogoing)
+{
+	yspd = jumpSpd;
+}
+else if (stunned)
+{
+	xspd = prevXSpd;
+}
+if (invulnerableCounter > 0)
+{
+	invulnerableCounter++;
+	image_alpha = int64(invulnerableCounter % 3 == 0);
+	if (invulnerableCounter == 120)
+	{
+		invulnerableCounter = 0;
+	}
+}
+
+if (currentHealth == 0 && place_meeting(x, y + 1, oSolid) && !stunned)
+{
+	xspd = 0;
+	yspd = 0;
+	image_alpha = 1;
+}
+
+//Apply gravity
+yspd += grav;
+
 //Collision checking
 if (place_meeting(x + xspd, y, oSolid))
 {
@@ -124,53 +173,6 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 	yspd = 0;
 	stunned = false;
 	
-}
-
-//Cancel attack
-if (prevYSpd > 0 && yspd == 0 || prevYSpd == 0 && yspd < 0 || stunned)
-{
-	attackCounter = 0;
-	attackBuffered = false;
-}
-
-//Enemy collision checking
-if ((place_meeting(x + xspd, y, oEnemy) || (place_meeting(x + xspd, y + yspd, oEnemy) && !pogoing)) && !stunned && invulnerableCounter == 0)
-{
-	xspd = -image_xscale * 2;
-	yspd = -5;
-	turnAroundCounter = 0;
-	attackCounter = 0;
-	stunned = true;
-	invulnerableCounter++;
-	currentHealth--;
-	if (currentHealth == 0)
-	{
-		yspd = -15;
-	}
-}
-else if (place_meeting(x + xspd, y + yspd, oEnemy) && pogoing)
-{
-	yspd = -8.5;
-}
-else if (stunned)
-{
-	xspd = prevXSpd;
-}
-if (invulnerableCounter > 0)
-{
-	invulnerableCounter++;
-	image_alpha = int64(invulnerableCounter % 3 == 0);
-	if (invulnerableCounter == 120)
-	{
-		invulnerableCounter = 0;
-	}
-}
-
-if (currentHealth == 0 && place_meeting(x, y + 1, oSolid) && !stunned)
-{
-	xspd = 0;
-	yspd = 0;
-	image_alpha = 1;
 }
 
 //Applying movement

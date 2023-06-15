@@ -3,22 +3,26 @@
 xspd = 0;
 yspd = 0;
 
-currentHealth = 9;
+currentHealth = 8;
 maxHealth = currentHealth;
 
-gold = 100;
+gold = 0;
 
 prevXSpd = 0;
 prevYSpd = 0;
 initMoveSpd = 1;
 maxMoveSpd = 1.75;
-jumpSpd = -8.5; //8.5 for roughly 4.5 tile jump height
-grav = 0.5;
+jumpSpd = -6.5;
+grav = 0.3;
 pogoing = false;
 attackCounter = 0;
 attackBuffered = false;
 stunned = false;
 invulnerableCounter = 0;
+
+deathCounter = 0; //Counts to 60, then does the death transition
+deathTransitionXPos = 400;
+resetCounter = 0; //Counts to 180, then does the "revive" transition
 
 initMoveCounter = 0;
 turnAroundCounter = 0; //8 frames to switch running direction

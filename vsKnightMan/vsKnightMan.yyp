@@ -28,6 +28,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sPlayer","folderPath":"folders/Sprites/sPlayer.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sGUI","folderPath":"folders/Sprites/sGUI.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"shovel-knight-extended.ttf","CopyToMask":-1,"filePath":"datafiles",},
@@ -61,6 +62,7 @@
     {"id":{"name":"sHUD","path":"sprites/sHUD/sHUD.yy",},},
     {"id":{"name":"Room2","path":"rooms/Room2/Room2.yy",},},
     {"id":{"name":"sPlayerFall","path":"sprites/sPlayerFall/sPlayerFall.yy",},},
+    {"id":{"name":"sDeathTransition","path":"sprites/sDeathTransition/sDeathTransition.yy",},},
     {"id":{"name":"sPlayerPogo","path":"sprites/sPlayerPogo/sPlayerPogo.yy",},},
     {"id":{"name":"sPlayerDead","path":"sprites/sPlayerDead/sPlayerDead.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
