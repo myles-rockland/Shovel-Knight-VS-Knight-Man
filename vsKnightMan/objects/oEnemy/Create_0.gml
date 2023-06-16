@@ -6,12 +6,14 @@ maxHealth = currentHealth;
 xspd = 0;
 yspd = 0;
 
+grounded = false;
+
 states =
 [
 	"idle",
 	"running",
 	"jumping",
-	"charging",
+	"swinging",
 	"throwing",
 	"bashing",
 	"blockingUp",
