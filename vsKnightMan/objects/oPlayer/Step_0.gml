@@ -64,12 +64,15 @@ if (yspd < 0 && !jumpKeyHeld && !pogoing && !stunned && attackCounter == 0)
 if (!place_meeting(x, y + 1, oSolid) && downKey && attackCounter == 0 && !stunned)
 {
 	pogoing = true;
-	instance_create_layer(x, y - 10, "Instances", oPlayerAttackHitbox);
 }
-else if (place_meeting(x, y + 1, oSolid) || stunned || attackCounter > 0)
+else if (pogoing && (place_meeting(x, y + 1, oSolid) || stunned || attackCounter > 0))
 {
 	pogoing = false;
 	instance_destroy(oPlayerAttackHitbox);
+}
+if (pogoing && pogoCounter == 0 && !instance_exists(oPlayerAttackHitbox))
+{
+	instance_create_layer(x, y + yspd - 8, "Instances", oPlayerAttackHitbox);
 }
 
 //Terminal falling velocity
@@ -117,7 +120,7 @@ if (prevYSpd > 0 && yspd == 0 || prevYSpd == 0 && yspd < 0 || stunned)
 }
 
 //Enemy collision checking
-if ((place_meeting(x + xspd, y, oEnemy) || (place_meeting(x + xspd, y + yspd, oEnemy) && !pogoing)) && !stunned && invulnerableCounter == 0 && currentHealth != 0)
+if ((place_meeting(x + xspd, y, oEnemy) || place_meeting(x + xspd, y + yspd, oEnemy)) && !pogoing && !stunned && invulnerableCounter == 0 && currentHealth != 0)
 {
 	xspd = -image_xscale * 2;
 	yspd = -3;
@@ -134,10 +137,20 @@ if ((place_meeting(x + xspd, y, oEnemy) || (place_meeting(x + xspd, y + yspd, oE
 else if (place_meeting(x + xspd, y + yspd, oEnemy) && pogoing)
 {
 	yspd = jumpSpd;
+	instance_destroy(oPlayerAttackHitbox);
+	pogoCounter++;
 }
 else if (stunned)
 {
 	xspd = prevXSpd;
+}
+else if (pogoCounter > 0)
+{
+	pogoCounter++;
+	if (pogoCounter >= 8)
+	{
+		pogoCounter = 0;
+	}
 }
 if (invulnerableCounter > 0)
 {
@@ -187,7 +200,6 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 		xspd = 0;
 		turnAroundCounter = 0;
 	}
-	
 }
 
 //Applying movement

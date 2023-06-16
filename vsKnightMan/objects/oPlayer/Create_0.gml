@@ -8,6 +8,8 @@ maxHealth = currentHealth;
 
 gold = 0;
 
+pogoCounter = 0;
+
 prevXSpd = 0;
 prevYSpd = 0;
 initMoveSpd = 1;

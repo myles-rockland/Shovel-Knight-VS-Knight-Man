@@ -4,7 +4,7 @@ var player = instance_nearest(x, y, oPlayer);
 if (player.pogoing)
 {
 	x = player.x;
-	y = player.y - 10;
+	y = player.y + player.yspd - 8;
 }
 else
 {
