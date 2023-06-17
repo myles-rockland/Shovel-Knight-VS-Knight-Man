@@ -9,12 +9,15 @@ attackKeyPressed = keyboard_check_pressed(ord("J"));
 
 prevXSpd = xspd;
 prevYSpd = yspd;
-
 //Moving
 var moveDir = (rightKey - leftKey);
 if (rightKey && leftKey)
 {
 	moveDir = -1;
+}
+if (moveDir == 0)
+{
+	runningInitCounter = 0;
 }
 if (currentState != "stunned" && currentState != "dying" && currentState != "dead" && !grounded)
 {
@@ -25,7 +28,7 @@ if (currentState != "stunned" && currentState != "dying" && currentState != "dea
 yspd += grav;
 
 //Collision checking
-if (place_meeting(x + sign(xspd) + xspd, y, oSolid))
+if (place_meeting(x + xspd, y, oSolid))
 {
 	x = round(x);
 	var _pixelCheck = sign(xspd);
@@ -36,7 +39,7 @@ if (place_meeting(x + sign(xspd) + xspd, y, oSolid))
 	xspd = 0;
 }
 
-if (place_meeting(x + xspd, y + sign(yspd) + yspd, oSolid))
+if (place_meeting(x + xspd, y + ceil(yspd), oSolid))
 {
 	y = round(y);
 	var _pixelCheck = sign(yspd);
@@ -129,7 +132,6 @@ else
 }
 
 //Run state logic
-//currentState = nextState;
 switch (currentState)
 {
 	case "idle":
@@ -146,12 +148,7 @@ switch (currentState)
 		}
 		else if (runningInitCounter == 5)
 		{
-			runningInitCounter = 0;
 			xspd = moveDir * runningSpeed;
-		}
-		if (sign(prevXSpd) == -sign(xspd) && abs(prevXSpd) == runningSpeed)
-		{
-			currentState = "turning";
 		}
 		
 	break;
@@ -214,13 +211,31 @@ switch (currentState)
 		
 	break;
 	case "pogoing":
+		if (pogoDelay > 0 && pogoDelay < 12)
+		{
+			pogoDelay++;
+		}
+		else
+		{
+			pogoDelay = 0;
+		}
 	break;
 	case "stunned":
 		xspd = -image_xscale * 2;
 	break;
 	case "dying":
+		if (grounded)
+		{
+			xspd = 0;
+			yspd = 0;
+		}
 	break;
 	case "dead":
+		if (grounded)
+		{
+			xspd = 0;
+			yspd = 0;
+		}
 	break;
 }
 if (invulnerableCounter > 0 && invulnerableCounter < 120)

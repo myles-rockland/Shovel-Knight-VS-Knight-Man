@@ -28,7 +28,6 @@ states =
 ]
 */
 currentState = "idle";
-nextState = "idle";
 
 grounded = false;
 landed = false;

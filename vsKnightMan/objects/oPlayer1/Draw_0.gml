@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 draw_sprite_ext(sprite_index, image_index, floor(x), floor(y), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-draw_text(floor(x), floor(y - 40), invulnerableCounter); //debugging
+draw_text(floor(x), floor(y - 40), y); //debugging
 switch (currentState)
 {
 	case "idle":
@@ -28,7 +28,7 @@ switch (currentState)
 		}
 	break;
 	case "jumping":
-		if (yspd <= 0)
+		if (yspd <= 2)
 		{
 			sprite_index = sPlayerJump;
 		}
@@ -48,6 +48,10 @@ switch (currentState)
 	break;
 	case "dying":
 		sprite_index = sPlayerDead
+		if (image_index == 3)
+		{
+			currentState = "dead";
+		}
 	break;
 	case "dead":
 		sprite_index = sPlayerDead;

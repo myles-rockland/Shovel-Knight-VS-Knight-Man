@@ -43,9 +43,10 @@ else
 }
 
 //Player collision checking
-if (player.currentState == "pogoing" && place_meeting(x, y, oPlayer1) && currentState != "swinging")
+if (player.currentState == "pogoing" && player.pogoDelay == 0 && place_meeting(x, y, oPlayer1) && currentState != "swinging")
 {
 	player.yspd = player.jumpSpd;
+	player.pogoDelay++;
 	if (currentState != "blockingUp")
 	{
 		currentHealth--;
@@ -64,7 +65,6 @@ else if (player.currentState != "stunned" && player.invulnerableCounter == 0 && 
 }
 
 //Do stuff based on current state
-currentState = nextState;
 switch (currentState)
 {
 	case "idle":
@@ -73,40 +73,40 @@ switch (currentState)
 		if (player.x > x - 32 && player.x < x + 32 && player.y < y)
 		{
 			idleCounter = 0;
-			nextState = "blockingUp"
+			currentState = "blockingUp"
 		}
-		else if (player.y == y && ((player.x > x - 80 && player.x < x) || (player.x < x + 80 && player.x > x)))
+		else if (player.grounded && grounded && ((player.x > x - 80 && player.x < x) || (player.x < x + 80 && player.x > x)))
 		{
 			idleCounter = 0;
-			nextState = "blockingSide"
+			currentState = "blockingSide"
 		}
 		else if (idleCounter == 60)
 		{
 			idleCounter = 0;
-			nextState = "running";
+			currentState = "running";
 		}
 		else if (currentHealth == 6 && !replenished)
 		{
 			idleCounter = 0;
-			nextState = "replenishing";
+			currentState = "replenishing";
 		}
 	break;
 	case "running":
 		runningCounter++;
-		if (hitFromSide)
+		if (instance_exists(oPlayerAttackHitbox) && place_meeting(x, y, oPlayerAttackHitbox))
 		{
 			runningCounter = 0;
-			nextState = "bashing";
+			currentState = "bashReady";
 		}
-		else if (hitFromAbove)
+		else if (player.currentState == "pogoing" && place_meeting(x, y, oPlayer1))
 		{
 			runningCounter = 0;
-			nextState = "swinging";
+			currentState = "swinging";
 		}
 		else if (runningCounter == 120)
 		{
 			runningCounter = 0;
-			nextState = "throwing";
+			currentState = "throwing";
 		}
 		else
 		{
@@ -123,7 +123,7 @@ switch (currentState)
 		else if (grounded && hasJumped)
 		{
 			hasJumped = false;
-			nextState = "idle";
+			currentState = "idle";
 		}
 	break;
 	case "swinging":
@@ -132,12 +132,12 @@ switch (currentState)
 		if (player.currentState != "stunned" && player.invulnerableCounter == 0 && (place_meeting(x + xspd, y, oPlayer1) || place_meeting(x + xspd, y + yspd, oPlayer1)))
 		{
 			swingingCounter = 0;
-			nextState = "idle";
+			currentState = "idle";
 		}
 		else if (swingingCounter == 60)
 		{
 			swingingCounter = 0;
-			nextState = "throwing";
+			currentState = "throwing";
 		}
 	break;
 	case "throwing":
@@ -146,7 +146,15 @@ switch (currentState)
 		if (throwingCounter == 39)
 		{
 			throwingCounter = 0;
-			nextState = "idle";
+			currentState = "idle";
+		}
+	break;
+	case "bashReady":
+		bashReadyCounter++;
+		if (bashReadyCounter == 30)
+		{
+			bashReadyCounter = 0;
+			currentState = "bashing";
 		}
 	break;
 	case "bashing":
@@ -158,42 +166,47 @@ switch (currentState)
 		else if (walled && bashStarted)
 		{
 			bashStarted = false;
-			nextState = "idle";
+			currentState = "idle";
 		}
 	break;
 	case "blockingUp":
 		blockingCounter++;
-		if (player.currentState == "pogoing")
+		if (player.currentState == "pogoing" && place_meeting(x, y, oPlayer1))
 		{
 			blockingCounter = 0;
-			nextState = "swinging";
+			currentState = "swinging";
 		}
 		else if (blockingCounter == 120)
 		{
 			blockingCounter = 0;
-			nextState = "jumping";
+			currentState = "jumping";
 		}
 	break;
-	case "blockingSide":
+	case "blockingSide": //Don't let player just keep pogoing!
 		blockingCounter++;
+		image_xscale = sign(player.x - x);
+		if (image_xscale == 0)
+		{
+			image_xscale = 1;
+		}
 		if (player.attackCounter > 0)
 		{
 			blockingCounter = 0;
-			nextState = "bashing";
+			currentState = "bashReady";
 		}
 		else if (blockingCounter == 120)
 		{
 			blockingCounter = 0;
-			nextState = "jumping";
+			currentState = "jumping";
 		}
 	break;
 	case "replenishing":
 		currentHealth = 20;
 		replenished = true;
-		nextState = "idle";
+		currentState = "idle";
 	break;
 	case "dying":
-		if (grounded && !deathLaunched)
+		if (!deathLaunched)
 		{
 			deathLaunched = true;
 			xspd = 2 * -image_xscale;
@@ -202,21 +215,21 @@ switch (currentState)
 		else if (grounded && deathLaunched)
 		{
 			xspd = 0;
-			nextState = "crouching";
+			currentState = "crouching";
 		}
 		
 	break;
 	case "crouching":
 		if (player.attackCounter > 0) //Should check to see if dialogue is done, placeholder condition for now
 		{
-			nextState = "teleporting";
+			currentState = "teleportingOut";
 		}
 	break;
-	case "teleporting":
+	case "teleportingOut":
 		yspd = -2;
 	break;
 }
-if (currentHealth == 0 && nextState != "dying")
+if (currentHealth == 0 && !deathLaunched)
 {
-	nextState = "dying";
+	currentState = "dying";
 }
