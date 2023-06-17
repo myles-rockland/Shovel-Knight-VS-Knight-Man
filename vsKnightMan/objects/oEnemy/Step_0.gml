@@ -54,7 +54,7 @@ switch (currentState)
 			idleCounter = 0;
 			nextState = "blockingUp"
 		}
-		else if (player.y == y && ((player.x > x - 48 && player.x < x) || (player.x < x + 48 && player.x > x)))
+		else if (player.y == y && ((player.x > x - 80 && player.x < x) || (player.x < x + 80 && player.x > x)))
 		{
 			idleCounter = 0;
 			nextState = "blockingSide"
@@ -89,7 +89,7 @@ switch (currentState)
 		}
 		else
 		{
-			xspd = 1.5 * sign(player.x - x);
+			xspd = 1 * sign(player.x - x);
 		}
 	break;
 	case "jumping":
@@ -132,9 +132,9 @@ switch (currentState)
 		if (!walled && !bashStarted)
 		{
 			bashStarted = true;
-			xspd = 2 * sign(player.x - x);
+			xspd = 4 * sign(player.x - x);
 		}
-		else
+		else if (walled && bashStarted)
 		{
 			bashStarted = false;
 			nextState = "idle";
@@ -186,11 +186,16 @@ switch (currentState)
 		
 	break;
 	case "crouching":
+		if (player.attackCounter > 0) //Should check to see if dialogue is done, placeholder condition for now
+		{
+			nextState = "teleporting";
+		}
 	break;
 	case "teleporting":
+		yspd = -2;
 	break;
 }
-if (currentHealth == 0)
+if (currentHealth == 0 && nextState != "dying")
 {
 	nextState = "dying";
 }

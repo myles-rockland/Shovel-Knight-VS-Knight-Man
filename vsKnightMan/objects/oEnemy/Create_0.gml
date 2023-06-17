@@ -7,6 +7,7 @@ xspd = 0;
 yspd = 0;
 grav = 0.3;
 
+/*
 states =
 [
 	"idle",
@@ -22,6 +23,7 @@ states =
 	"crouching",
 	"teleporting"
 ]
+*/
 
 currentState = "idle";
 nextState = "idle"; //Change this to test states
