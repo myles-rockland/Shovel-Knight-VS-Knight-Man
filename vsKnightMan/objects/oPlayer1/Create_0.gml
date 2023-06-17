@@ -23,13 +23,15 @@ states =
 	"attacking",
 	"pogoing",
 	"stunned",
-	"dying"
+	"dying",
+	"dead"
 ]
 */
 currentState = "idle";
 nextState = "idle";
 
 grounded = false;
+landed = false;
 runningInitSpeed = 1;
 runningInitCounter = 0; //Wait 5 frames before moving at full speed
 runningSpeed = 1.75;

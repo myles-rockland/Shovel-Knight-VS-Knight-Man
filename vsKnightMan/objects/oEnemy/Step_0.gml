@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-player = instance_nearest(x, y, oPlayer);
+player = instance_nearest(x, y, oPlayer1);
 
 //Apply movement
 x += xspd;
@@ -29,7 +29,7 @@ else
 if (place_meeting(x + xspd, y + yspd, oSolid))
 {
 	y = round(y);
-	var _pixelCheck = sign(yspd);
+	var _pixelCheck = sign(yspd) * abs(grav);
 	while !place_meeting(x + xspd, y + _pixelCheck, oSolid)
 	{
 		y += _pixelCheck;
@@ -40,6 +40,27 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 else
 {
 	grounded = false;
+}
+
+//Player collision checking
+if (player.currentState == "pogoing" && place_meeting(x, y, oPlayer1) && currentState != "swinging")
+{
+	player.yspd = player.jumpSpd;
+	if (currentState != "blockingUp")
+	{
+		currentHealth--;
+	}
+}
+else if (player.currentState != "stunned" && player.invulnerableCounter == 0 && (place_meeting(x + xspd, y, oPlayer1) || place_meeting(x + xspd, y + yspd, oPlayer1)))
+{
+	player.currentState = "stunned";
+	player.yspd = -3;
+	player.currentHealth--;
+	if (player.currentHealth == 0)
+	{
+		player.yspd = -5;
+		player.currentState = "dying";
+	}
 }
 
 //Do stuff based on current state
@@ -108,7 +129,7 @@ switch (currentState)
 	case "swinging":
 		swingingCounter++;
 		xspd = 0;
-		if (player.stunned) //Not sure how to determine if player gets hit as yet. Should be done inside enemy object I think.
+		if (player.currentState != "stunned" && player.invulnerableCounter == 0 && (place_meeting(x + xspd, y, oPlayer1) || place_meeting(x + xspd, y + yspd, oPlayer1)))
 		{
 			swingingCounter = 0;
 			nextState = "idle";
@@ -142,7 +163,7 @@ switch (currentState)
 	break;
 	case "blockingUp":
 		blockingCounter++;
-		if (player.pogoing)
+		if (player.currentState == "pogoing")
 		{
 			blockingCounter = 0;
 			nextState = "swinging";
