@@ -81,7 +81,7 @@ if (currentState == "dead")
 	attackBuffered = false;
 	currentState = "dead";
 }
-else if (currentState = "dying")
+else if (currentHealth == 0 && grounded)
 {
 	turningCounter = 0;
 	attackCounter = 0;
@@ -224,18 +224,19 @@ switch (currentState)
 		xspd = -image_xscale * 2;
 	break;
 	case "dying":
-		if (grounded)
-		{
-			xspd = 0;
-			yspd = 0;
-		}
+		invulnerableCounter = 0; //So player doesn't flash while dying
+		xspd = 0;
+		yspd = 0;
 	break;
 	case "dead":
-		if (grounded)
+		deathTransCounter++;
+		xspd = 0;
+		yspd = 0;
+		if (deathTransCounter == 60)
 		{
-			xspd = 0;
-			yspd = 0;
+			instance_create_layer(400, 0, "Instances", oDeathTransition);
 		}
+		
 	break;
 }
 if (invulnerableCounter > 0 && invulnerableCounter < 120)

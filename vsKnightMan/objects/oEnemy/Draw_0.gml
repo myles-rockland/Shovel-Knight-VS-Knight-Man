@@ -50,6 +50,7 @@ switch (currentState)
 		sprite_index = sEnemyTeleportOut;
 		if (image_index > 2)
 		{
+			yspd = -4;
 			image_speed = 0;
 		}
 	break;
@@ -57,4 +58,13 @@ switch (currentState)
 if (xspd != 0)
 {
 	image_xscale = xspd * (1/abs(xspd));
+}
+var colours = [c_aqua, c_blue, c_red]
+if (hitCounter > 0)
+{
+	image_blend = colours[hitCounter div 3 % 3];
+}
+else
+{
+	image_blend = c_white;
 }

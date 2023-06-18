@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
-  "name": "sEnemyTeleport",
+  "name": "sEnemyTeleportIn",
   "bbox_bottom": 39,
   "bbox_left": 0,
   "bbox_right": 24,
@@ -34,7 +34,7 @@
   "sequence": {
     "resourceType": "GMSequence",
     "resourceVersion": "1.4",
-    "name": "sEnemyTeleport",
+    "name": "sEnemyTeleportIn",
     "autoRecord": true,
     "backdropHeight": 768,
     "backdropImageOpacity": 0.5,
@@ -49,16 +49,16 @@
     "lockOrigin": false,
     "moments": {"resourceType":"KeyframeStore<MomentsEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "playback": 1,
-    "playbackSpeed": 7.0,
+    "playbackSpeed": 12.0,
     "playbackSpeedType": 0,
     "showBackdrop": true,
     "showBackdropImage": false,
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"963c4116-b5e8-4f4f-b325-70d2c8a54e9e","path":"sprites/sEnemyTeleport/sEnemyTeleport.yy",},},},"Disabled":false,"id":"9da0b6a5-6011-4ec1-b4b2-0fde408b6e0d","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"22df276b-060b-4d59-8ad4-e17b039f98a8","path":"sprites/sEnemyTeleport/sEnemyTeleport.yy",},},},"Disabled":false,"id":"35604b4c-b14b-41c5-88e9-3efe9a35666f","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"7601e828-e6b2-496a-b851-0f92ba3feb10","path":"sprites/sEnemyTeleport/sEnemyTeleport.yy",},},},"Disabled":false,"id":"ea708f2a-c99b-469e-bbe8-ddb23e14ecfb","IsCreationKey":false,"Key":2.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"963c4116-b5e8-4f4f-b325-70d2c8a54e9e","path":"sprites/sEnemyTeleportIn/sEnemyTeleportIn.yy",},},},"Disabled":false,"id":"9da0b6a5-6011-4ec1-b4b2-0fde408b6e0d","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"22df276b-060b-4d59-8ad4-e17b039f98a8","path":"sprites/sEnemyTeleportIn/sEnemyTeleportIn.yy",},},},"Disabled":false,"id":"35604b4c-b14b-41c5-88e9-3efe9a35666f","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"7601e828-e6b2-496a-b851-0f92ba3feb10","path":"sprites/sEnemyTeleportIn/sEnemyTeleportIn.yy",},},},"Disabled":false,"id":"ea708f2a-c99b-469e-bbe8-ddb23e14ecfb","IsCreationKey":false,"Key":2.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

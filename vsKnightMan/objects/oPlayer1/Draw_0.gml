@@ -1,7 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 draw_sprite_ext(sprite_index, image_index, floor(x), floor(y), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-draw_text(floor(x), floor(y - 40), y); //debugging
 switch (currentState)
 {
 	case "idle":
@@ -47,16 +46,10 @@ switch (currentState)
 		sprite_index = sPlayerStunned;
 	break;
 	case "dying":
-		sprite_index = sPlayerDead
-		if (image_index == 3)
-		{
-			currentState = "dead";
-		}
+		sprite_index = sPlayerDying;
 	break;
 	case "dead":
 		sprite_index = sPlayerDead;
-		image_index = 3;
-		image_speed = 0;
 	break;
 }
 if (xspd != 0 && currentState != "stunned")

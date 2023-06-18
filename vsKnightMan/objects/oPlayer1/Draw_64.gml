@@ -1,5 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
+//draw_text(floor(x), floor(y - 40), (pogoDelay)); //debugging, comment in/out to view values
+
 //Draw player health bubbles
 var numBubbles = (maxHealth div 2) + (maxHealth % 2);
 var numFullBubbles = currentHealth div 2;
@@ -29,3 +31,6 @@ for (var i = 0; i < numBubbles; i++)
 //Drawing gold count
 draw_set_halign(fa_left);
 draw_text(12, 10, gold);
+
+//Draw magic count
+draw_text_colour(91, 10, magic, #38c0fc, #38c0fc, #38c0fc, #38c0fc, 1);
