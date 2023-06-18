@@ -172,6 +172,7 @@ switch (currentState)
 		if (bashReadyCounter == 30)
 		{
 			bashReadyCounter = 0;
+			instance_create_layer(x - (16 * image_xscale), y, "Instances", oEnemyDashEffect);
 			currentState = "bashing";
 		}
 	break;
