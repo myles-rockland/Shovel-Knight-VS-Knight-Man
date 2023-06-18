@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oPlayerAttackHitbox",
+  "name": "oEnemyAttackHitbox",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
   ],
@@ -28,8 +28,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sPlayerAttackHitbox",
-    "path": "sprites/sPlayerAttackHitbox/sPlayerAttackHitbox.yy",
+    "name": "sEnemyAttackHitbox",
+    "path": "sprites/sEnemyAttackHitbox/sEnemyAttackHitbox.yy",
   },
   "spriteMaskId": null,
   "visible": false,

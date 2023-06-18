@@ -3,8 +3,8 @@
 rightKey = keyboard_check(ord("D"));
 leftKey = keyboard_check(ord("A"));
 downKey = keyboard_check(ord("S"));
-jumpKeyPressed = keyboard_check_pressed(vk_space);
-jumpKeyHeld = keyboard_check(vk_space);
+jumpKeyPressed = (keyboard_check_pressed(vk_space) || keyboard_check_pressed(ord("K")));
+jumpKeyHeld = (keyboard_check(vk_space) || keyboard_check(ord("K")));
 attackKeyPressed = keyboard_check_pressed(ord("J"));
 
 prevXSpd = xspd;

@@ -155,6 +155,10 @@ switch (currentState)
 	break;
 	case "throwing":
 		throwingCounter++;
+		if (throwingCounter == 4)
+		{
+			instance_create_layer(x + (image_xscale * 40), y, "Instances", oEnemyAttackHitbox);
+		}
 		xspd = 0;
 	break;
 	case "bashReady":
