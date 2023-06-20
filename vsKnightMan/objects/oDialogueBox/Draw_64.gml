@@ -9,7 +9,7 @@ draw_set_colour(c_white);
 //Number of messages in array
 text_end = array_length(text);
 
-//incrementing t
+//incrementing t for use in sin wave
 t++;
 
 if (text_end > 0)
@@ -29,8 +29,14 @@ if (text_end > 0)
 	//Next Message
 	if (keyboard_check_pressed(ord("K")) || keyboard_check_pressed(vk_space))
 	{
+		//If the current text has not finished being written, immediately finish it
+		if (cutoff < string_length(text[text_current]))
+		{
+			cutoff = string_length(text[text_current]);
+			timer = 0;
+		}
 		//If there is more text, go to the next one
-		if (text_current < text_end - 1)
+		else if (text_current < text_end - 1)
 		{
 			text_current++;
 			cutoff = (string_pos(":", text[text_current]) != 0 ? string_pos(":", text[text_current]) : 0); //Start from either colon or very start

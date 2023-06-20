@@ -116,7 +116,7 @@ switch (currentState)
 			runningCounter = 0;
 			currentState = "throwing";
 		}
-		else if (player.grounded && player.jumpKeyPressed)
+		else if (player.jumpKeyPressed)
 		{
 			runningCounter = 0;
 			currentState = choose("jumping", "bashReady");

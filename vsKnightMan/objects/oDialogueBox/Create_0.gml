@@ -6,9 +6,8 @@ y = 0;
 shovelFont = font_add("shovel-knight-extended.ttf", 6, false, false, 32, 128);
 
 //Dialogue lines
-text[0] = "\\0knight man: halt! have you seen a \\wshort, blue man \\0pass through this area?";
-text[1] = "\\0shovel knight: well met, but no, sorry.";
-text[2] = "\\0knight man: very well, i shall be on my way, then.";
+text[0] = "\\0knight man: \\sthis \\0is some \\wwonderful \\0 placeholder text!";
+text[1] = "\\0shovel knight: it's true!";
 
 modifier = "0";
 
