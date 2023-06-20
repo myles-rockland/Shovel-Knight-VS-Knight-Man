@@ -10,4 +10,5 @@ if (deathTallyCounter >= 60 && deathTallyCounter < 240)
 	draw_set_halign(fa_center);
 	draw_text(200, 10, "player");
 	draw_text(200, 20, player.gold);
+	draw_sprite(sDeathTallyChest, 0, 186, 20);
 }

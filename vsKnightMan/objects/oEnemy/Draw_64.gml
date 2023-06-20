@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-//draw_text(floor(x), floor(y - 60), (currentState)); //Debugging thing
+//draw_text(floor(x), floor(y - 60), (image_index)); //Debugging thing
 
 var numBubbles = (maxHealth div 2) + (maxHealth % 2);
 var numFullBubbles = currentHealth div 2;

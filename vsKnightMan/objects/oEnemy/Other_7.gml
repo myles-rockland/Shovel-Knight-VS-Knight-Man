@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-if (sprite_index == sEnemyReplenish)
+if (sprite_index == sEnemyReplenish && image_index < 12)
 {
 	if (currentHealth == 20)
 	{

@@ -271,9 +271,8 @@ if (currentHealth == 0 && !deathLaunched && replenished)
 {
 	currentState = "dying";
 }
-if (currentHealth <= 6 && grounded && !replenished && currentState != "bashing" && currentState != "bashReady")
+if (currentHealth <= 6 && grounded && !replenished && currentState != "bashing" && currentState != "bashReady" && currentState != "jumping")
 {
-	yspd = 0;
 	idleCounter = 0;
 	runningCounter = 0;
 	swingingCounter = 0;
@@ -283,4 +282,5 @@ if (currentHealth <= 6 && grounded && !replenished && currentState != "bashing" 
 	hasJumped = false;
 	bashStarted = false;
 	currentState = "replenishing";
+	image_index = 0;
 }

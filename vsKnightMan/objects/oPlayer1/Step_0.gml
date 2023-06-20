@@ -88,14 +88,14 @@ else if (currentHealth == 0 && grounded)
 	attackBuffered = false;
 	currentState = "dying";
 }
-else if (currentState == "stunned" && !grounded)
+else if (currentState == "stunned" && !grounded && !instance_exists(oDialogueBox))
 {
 	turningCounter = 0;
 	attackCounter = 0;
 	attackBuffered = false;
 	currentState = "stunned";
 }
-else if ((grounded && jumpKeyPressed) || (!grounded && !attackKeyPressed && attackCounter == 0 && !attackBuffered && currentState != "pogoing" && !downKey))
+else if (((grounded && jumpKeyPressed) || (!grounded && !attackKeyPressed && attackCounter == 0 && !attackBuffered && currentState != "pogoing" && !downKey))  && !instance_exists(oDialogueBox))
 {
 	if (grounded && jumpKeyPressed)
 	{
@@ -105,20 +105,20 @@ else if ((grounded && jumpKeyPressed) || (!grounded && !attackKeyPressed && atta
 	}
 	currentState = "jumping";
 }
-else if (attackKeyPressed || attackBuffered || attackCounter > 0)
+else if ((attackKeyPressed || attackBuffered || attackCounter > 0) && !instance_exists(oDialogueBox))
 {
 	turningCounter = 0;
 	currentState = "attacking";
 }
-else if (!grounded && (currentState == "pogoing" || downKey))
+else if (!grounded && !instance_exists(oDialogueBox) && (currentState == "pogoing" || downKey))
 {
 	currentState = "pogoing";
 }
-else if ((currentState == "turning") || grounded && ((xspd < 0 && rightKey && !leftKey) || (xspd > 0 && leftKey)))
+else if (((currentState == "turning") || grounded && ((xspd < 0 && rightKey && !leftKey) || (xspd > 0 && leftKey))) && !instance_exists(oDialogueBox))
 {
 	currentState = "turning";
 }
-else if (grounded && (leftKey || rightKey))
+else if (grounded && !instance_exists(oDialogueBox) && (leftKey || rightKey))
 {
 	currentState = "running";
 }
