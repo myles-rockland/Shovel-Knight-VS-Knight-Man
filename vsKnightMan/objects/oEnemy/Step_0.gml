@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-player = instance_nearest(x, y, oPlayer1);
+var player = instance_nearest(x, y, oPlayer1);
 
 //Apply gravity
 yspd += grav;
@@ -106,7 +106,7 @@ switch (currentState)
 			runningCounter = 0;
 			currentState = "bashReady";
 		}
-		else if (player.currentState == "pogoing" && place_meeting(x, y, oPlayer1))
+		else if ((player.currentState == "pogoing" && place_meeting(x, y - 1, oPlayer1)) || player.x > x - 8 && player.x < x + 8)
 		{
 			runningCounter = 0;
 			currentState = "swinging";
@@ -190,7 +190,7 @@ switch (currentState)
 	break;
 	case "blockingUp":
 		blockingCounter++;
-		if (player.currentState == "pogoing" && place_meeting(x, y, oPlayer1))
+		if (player.currentState == "pogoing" && place_meeting(x, y - 1, oPlayer1))
 		{
 			blockingCounter = 0;
 			currentState = "swinging";
@@ -237,18 +237,25 @@ switch (currentState)
 			currentHealth++;
 			replenishCounter = 0;
 		}
+		if (replenishedNum == 0)
+		{			
+			player.xspd = 0;
+			player.yspd = 0;
+			player.currentState = (player.currentState == "crouching") ? "crouching" : "idle";
+		}
 	break;
 	case "dying":
 		if (!deathLaunched)
 		{
 			deathLaunched = true;
-			xspd = 2 * -image_xscale;
+			xspd = 2 * image_xscale; //image_xscale gets set in previous step, negativity depends on placement of check for death
 			yspd = -5;
 		}
 		else if (grounded && deathLaunched)
 		{
 			xspd = 0;
 			currentState = "crouching";
+			newDialogue(["\\0knight man: \\wgaaah... \\0i am ashamed. i never thought i'd lose in this way.", "\\0shovel knight: you fought well, but i am not the one you seek!", "\\0shovel knight: i am shovel knight, on my quest to defeat the enchantress.", "\\0knight man: ...forgive me, shovel knight. i am knight man, on my quest to find a \\scerulean coward\\0!", "\\0shovel knight: all is forgiven, as a knight of the code of shovelry! i wish you well in your search, fellow knight.", "\\0knight man: likewise. for chivalry!", "\\0shovel knight: for shovelry!"]);
 		}
 		
 	break;
@@ -258,7 +265,7 @@ switch (currentState)
 		{
 			image_xscale = 1;
 		}
-		if (player.attackCounter > 0) //Should check to see if dialogue is done, placeholder condition for now
+		if (!instance_exists(oDialogueBox)) //Should check to see if dialogue is done, placeholder condition for now
 		{
 			currentState = "teleportingOut";
 		}

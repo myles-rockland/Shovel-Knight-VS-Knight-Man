@@ -41,6 +41,11 @@ switch (currentState)
 	break;
 	case "dying":
 		sprite_index = sEnemyDying;
+		image_xscale = -sign(xspd);
+		if (image_xscale == 0)
+		{
+			image_xscale = 1;
+		}
 	break;
 	case "crouching":
 		sprite_index = sEnemyCrouch;
@@ -54,14 +59,14 @@ switch (currentState)
 		}
 	break;
 }
-if (xspd != 0)
+if (xspd != 0 && currentState != "dying")
 {
 	image_xscale = xspd * (1/abs(xspd));
 }
 var colours = [c_aqua, c_blue, c_red]
 if (hitCounter > 0)
 {
-	image_blend = colours[hitCounter div 3 % 3];
+	image_blend = colours[hitCounter div 3 % 3]; //Felt like a genius figuring out this divmod counter
 }
 else
 {

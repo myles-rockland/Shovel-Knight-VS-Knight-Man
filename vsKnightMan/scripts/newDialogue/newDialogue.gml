@@ -4,6 +4,6 @@ function newDialogue(messageArray){
 	var dialogueBox = instance_create_layer(0, 0, "Instances", oDialogueBox);
 	for (var i = 0; i < array_length(messageArray); i++)
 	{
-		dialogueBox.text[i] = messageArray;
+		dialogueBox.text[i] = messageArray[i];
 	}
 }
