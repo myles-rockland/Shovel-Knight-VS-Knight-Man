@@ -272,6 +272,7 @@ switch (currentState)
 	break;
 	case "teleportingOut":
 		yspd = 0;
+		player.currentState = "victory";
 	break;
 }
 if (currentHealth == 0 && !deathLaunched && replenished)

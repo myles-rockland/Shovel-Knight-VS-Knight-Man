@@ -36,6 +36,7 @@ runningInitCounter = 0; //Wait 5 frames before moving at full speed
 runningSpeed = 1.75;
 turningCounter = 0; //Turning lasts 8 frames, sliding for 4, then not moving for 4
 deathTransCounter = 0; //Death transition starts 60 frames after death
+victoryCounter = 0; //Transition to main menu starts after 600 frames
 jumpSpd = -6.5;
 hasJumped = false;
 attackBuffered = false; //If an attack is buffered, automatically attack again

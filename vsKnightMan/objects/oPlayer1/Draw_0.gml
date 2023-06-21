@@ -50,6 +50,9 @@ switch (currentState)
 	case "dead":
 		sprite_index = sPlayerDead;
 	break;
+	case "victory":
+		sprite_index = sPlayerVictory;
+	break;
 }
 if (xspd != 0 && currentState != "stunned")
 {

@@ -81,6 +81,13 @@ if (currentState == "dead")
 	attackBuffered = false;
 	currentState = "dead";
 }
+else if (currentState == "victory")
+{
+	turningCounter = 0;
+	attackCounter = 0;
+	attackBuffered = false;
+	currentState = "victory";
+}
 else if (currentHealth == 0 && grounded)
 {
 	turningCounter = 0;
@@ -237,6 +244,15 @@ switch (currentState)
 			instance_create_layer(400, 0, "Instances", oDeathTransition);
 		}
 		
+	break;
+	case "victory":
+		victoryCounter++;
+		xspd = 0;
+		yspd = 0;
+		if (victoryCounter == 600)
+		{
+			instance_create_layer(0, 0, "Instances", oVictoryTransition);
+		}
 	break;
 }
 if (invulnerableCounter > 0 && invulnerableCounter < 120)
