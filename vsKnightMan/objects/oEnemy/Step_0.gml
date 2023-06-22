@@ -30,7 +30,10 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 	{
 		y += _pixelCheck;
 	}
-	grounded = true;
+	if (place_meeting(x, y + 1, oSolid))
+	{
+		grounded = true;
+	}
 	yspd = 0;
 }
 else
@@ -265,21 +268,84 @@ switch (currentState)
 		{
 			image_xscale = 1;
 		}
-		if (!instance_exists(oDialogueBox)) //Should check to see if dialogue is done, placeholder condition for now
+		if (!instance_exists(oDialogueBox))
 		{
 			currentState = "teleportingOut";
 		}
 	break;
+	case "teleportingIn":
+		if (!grounded)
+		{
+			yspd = 4;
+		}
+		else
+		{
+			yspd = 0;
+		}
+		//Force the player to be still
+		if (player.currentState == "jumping" && !player.jumpKeyPressed)
+		{
+			player.currentState = "jumping"; //Let the player fall if they are still in the air
+		}
+		else if (player.currentState == "pogoing")
+		{
+			player.currentState = "pogoing"; //Let the player fall if they are still in the air
+		}
+		else if (player.currentState == "crouching")
+		{
+			player.currentState = "crouching"; //Allow crouching
+			player.xspd = 0;
+			player.yspd = 0;
+		}
+		else
+		{
+			player.currentState = "idle"; //Be still
+			player.xspd = 0;
+			player.yspd = 0;
+		}
+	break;
 	case "teleportingOut":
 		yspd = 0;
-		player.currentState = "victory";
+		if (replenished)
+		{
+			player.currentState = "victory";
+		}
+		else if (y > 0)
+		{
+			//Force the player to be still
+			if (player.currentState == "jumping" && !player.jumpKeyPressed && !player.grounded)
+			{
+				player.currentState = "jumping"; //Let the player fall if they are still in the air
+			}
+			else if (player.currentState == "pogoing" && !player.grounded)
+			{
+				player.currentState = "pogoing"; //Let the player fall if they are still in the air
+			}
+			else if (player.currentState == "crouching")
+			{
+				player.currentState = "crouching"; //Allow crouching
+				player.xspd = 0;
+				player.yspd = 0;
+			}
+			else
+			{
+				player.currentState = "idle"; //Be still
+				player.xspd = 0;
+				player.yspd = 0;
+			}
+		}
+		else if (y <= 0 && player.currentState != "idle" && !replenished)
+		{
+			playerMoved = true;
+			currentState = "teleportingIn";
+		}
 	break;
 }
 if (currentHealth == 0 && !deathLaunched && replenished)
 {
 	currentState = "dying";
 }
-if (currentHealth <= 6 && grounded && !replenished && currentState != "bashing" && currentState != "bashReady" && currentState != "jumping")
+if (currentHealth <= 6 && grounded && !replenished && currentState != "bashing" && currentState != "bashReady" && currentState != "jumping" && currentState != "teleportingIn" && currentState != "teleportingOut" && !instance_exists(oDialogueBox))
 {
 	idleCounter = 0;
 	runningCounter = 0;

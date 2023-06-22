@@ -42,3 +42,4 @@ bashStarted = false;
 replenished = false;
 replenishedNum = 0; //Number of times replenished, replenishes once at start of fight, replenishes again at 6 health
 deathLaunched = false;
+playerMoved = false;

@@ -73,8 +73,47 @@ else
 x += xspd;
 y += yspd;
 
+
 //Determine state from inputs
-if (currentState == "dead")
+if (!instance_exists(oEnemy)) //Force player to run right in intro
+{
+	if (x < 80)
+	{
+		x += 1.75;
+		moveDir = 0;
+		currentState = "running";
+	}
+	else
+	{
+		var enemy = instance_create_layer(300, 0, "Instances", oEnemy);
+		enemy.currentState = "teleportingIn";
+	}
+}
+else if (instance_exists(oEnemy) && (instance_nearest(x, y, oEnemy)).currentState == "teleportingIn")
+{
+	//Force the player to be still
+	if (currentState == "jumping" && !jumpKeyPressed && !grounded)
+	{
+		currentState = "jumping"; //Let the player fall if they are still in the air
+	}
+	else if (currentState == "pogoing" && !grounded)
+	{
+		currentState = "pogoing"; //Let the player fall if they are still in the air
+	}
+	else if (currentState == "crouching")
+	{
+		currentState = "crouching"; //Allow crouching
+		xspd = 0;
+		yspd = 0;
+	}
+	else
+	{
+		currentState = "idle"; //Be still
+		xspd = 0;
+		yspd = 0;
+	}
+}
+else if (currentState == "dead")
 {
 	turningCounter = 0;
 	attackCounter = 0;
@@ -87,6 +126,11 @@ else if (currentState == "victory")
 	attackCounter = 0;
 	attackBuffered = false;
 	currentState = "victory";
+}
+else if (currentState == "armorGet")
+{
+	xspd = 0;
+	currentState = "armorGet";
 }
 else if (currentHealth == 0 && grounded)
 {

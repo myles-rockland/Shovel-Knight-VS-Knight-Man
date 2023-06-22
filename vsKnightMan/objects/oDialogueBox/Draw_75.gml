@@ -44,6 +44,15 @@ if (text_end > 0)
 		//If there isn't, the text is done
 		else
 		{
+			if (string_ends_with(text[text_current], "then."))
+			{
+				var enemy = instance_nearest(x, y, oEnemy);
+				enemy.currentState = "teleportingOut";
+			}
+			else if (string_ends_with(text[text_current], "armor."))
+			{
+				instance_create_layer(0, 0, "Instances", oChoiceBox);
+			}
 			instance_destroy();
 		}
 	}

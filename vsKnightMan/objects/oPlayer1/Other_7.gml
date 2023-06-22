@@ -4,3 +4,7 @@ if (sprite_index == sPlayerDying)
 {
 	currentState = "dead";
 }
+if (sprite_index == sPlayerGetArmor)
+{
+	image_index = 1;
+}

@@ -4,7 +4,19 @@ if (sprite_index == sEnemyDying)
 {
 	image_index = 3;
 }
-if (sprite_index == sEnemyReplenish && image_index < 12)
+else if (sprite_index = sEnemyTeleportIn)
+{
+	if (!playerMoved)
+	{
+		newDialogue(["\\0knight man: halt! have you seen a short, blue man pass through this area?", "\\0shovel knight: well met, but no, sorry.", "\\0knight man: very well, i shall be on my way, then."]);
+	}
+	else
+	{
+		newDialogue(["\\0knight man: \\shold it right there\\0!", "\\0knight man: you are short... and blue... could it be...?!", "\\0knight man: conniving scoundrel! it's \\syou\\0!", "\\0shovel knight: i'm not sure who you are, but i'm no scoundrel!", "\\0knight man: we will have a fair and square fight, and for that, i will offer you this armor."]);
+	}
+	currentState = "idle";
+}
+else if (sprite_index == sEnemyReplenish && image_index < 12)
 {
 	if (currentHealth == 20)
 	{

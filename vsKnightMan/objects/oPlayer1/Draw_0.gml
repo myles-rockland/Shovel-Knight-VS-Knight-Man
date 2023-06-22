@@ -53,6 +53,9 @@ switch (currentState)
 	case "victory":
 		sprite_index = sPlayerVictory;
 	break;
+	case "armorGet":
+		sprite_index = sPlayerGetArmor;
+	break;
 }
 if (xspd != 0 && currentState != "stunned")
 {

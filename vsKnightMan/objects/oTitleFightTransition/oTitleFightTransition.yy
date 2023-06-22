@@ -29,8 +29,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sTitleFightTransition",
-    "path": "sprites/sTitleFightTransition/sTitleFightTransition.yy",
+    "name": "sHoleTransition",
+    "path": "sprites/sHoleTransition/sHoleTransition.yy",
   },
   "spriteMaskId": null,
   "visible": true,

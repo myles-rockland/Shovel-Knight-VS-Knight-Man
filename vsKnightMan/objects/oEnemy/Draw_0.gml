@@ -50,6 +50,17 @@ switch (currentState)
 	case "crouching":
 		sprite_index = sEnemyCrouch;
 	break;
+	case "teleportingIn":
+		sprite_index = sEnemyTeleportIn;
+		if (!grounded)
+		{
+			image_speed = 0;
+		}
+		else
+		{
+			image_speed = 1;
+		}
+	break;
 	case "teleportingOut":
 		sprite_index = sEnemyTeleportOut;
 		if (image_index > 2)
