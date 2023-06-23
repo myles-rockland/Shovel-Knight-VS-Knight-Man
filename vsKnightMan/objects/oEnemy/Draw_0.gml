@@ -55,6 +55,7 @@ switch (currentState)
 		if (!grounded)
 		{
 			image_speed = 0;
+			image_index = 0;
 		}
 		else
 		{

@@ -36,6 +36,12 @@ else if (exitGameCounter > 0)
 		game_end();
 	}
 }
+else if (instance_exists(oControlsBox))
+{
+	downKeyPressed = false;
+	upKeyPressed = false;
+	confirmKeyPressed = false;
+}
 
 //Change selection based on inputs
 if (downKeyPressed)
@@ -62,6 +68,12 @@ else if (confirmKeyPressed)
 			startGameCounter++;
 		break;
 		//Create a case for "controls" where it creates an instance of oControlsTip
+		case "controls":
+			if (!instance_exists(oControlsBox))
+			{
+				instance_create_layer(112, 72, "Instances", oControlsBox);
+			}
+		break;
 		case "exit":
 			exitGameCounter++;
 		break;

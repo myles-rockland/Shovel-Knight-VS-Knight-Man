@@ -130,15 +130,15 @@ switch (currentState)
 		}
 	break;
 	case "jumping":
-		if (grounded && !hasJumped)
+		if (grounded && jumpNum < round(random_range(1, 4)))
 		{
-			hasJumped = true;
+			jumpNum++;
 			yspd = -8;
 			xspd = (player.x - x)/48; //1.5 * sign(player.x - x)
 		}
-		else if (grounded && hasJumped)
+		else if (grounded)
 		{
-			hasJumped = false;
+			jumpNum = 0;
 			currentState = "idle";
 		}
 	break;
@@ -282,8 +282,9 @@ switch (currentState)
 		{
 			yspd = 0;
 		}
+		io_clear();
 		//Force the player to be still
-		if (player.currentState == "jumping" && !player.jumpKeyPressed)
+		if (player.currentState == "jumping" && !player.grounded)
 		{
 			player.currentState = "jumping"; //Let the player fall if they are still in the air
 		}
@@ -313,7 +314,7 @@ switch (currentState)
 		else if (y > 0)
 		{
 			//Force the player to be still
-			if (player.currentState == "jumping" && !player.jumpKeyPressed && !player.grounded)
+			if (player.currentState == "jumping" && !player.grounded)
 			{
 				player.currentState = "jumping"; //Let the player fall if they are still in the air
 			}
@@ -353,7 +354,7 @@ if (currentHealth <= 6 && grounded && !replenished && currentState != "bashing" 
 	throwingCounter = 0;
 	blockingCounter = 0;
 	bashReadyCounter = 0;
-	hasJumped = false;
+	jumpNum = 0;
 	bashStarted = false;
 	currentState = "replenishing";
 	image_index = 0;

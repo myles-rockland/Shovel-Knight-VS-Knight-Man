@@ -3,9 +3,10 @@
 rightKey = keyboard_check(ord("D"));
 leftKey = keyboard_check(ord("A"));
 downKey = keyboard_check(ord("S"));
-jumpKeyPressed = (keyboard_check_pressed(vk_space) || keyboard_check_pressed(ord("K")));
+jumpKeyPressed =  (keyboard_check_pressed(vk_space) || keyboard_check_pressed(ord("K")));
 jumpKeyHeld = (keyboard_check(vk_space) || keyboard_check(ord("K")));
 attackKeyPressed = keyboard_check_pressed(ord("J"));
+pauseKeyPressed = keyboard_check_pressed(vk_enter);
 
 prevXSpd = xspd;
 prevYSpd = yspd;
@@ -19,7 +20,7 @@ if (moveDir == 0)
 {
 	runningInitCounter = 0;
 }
-if (currentState != "stunned" && currentState != "dying" && currentState != "dead" && !grounded)
+if (currentState != "stunned" && currentState != "dying" && currentState != "dead" && !grounded && !paused)
 {
 	xspd = moveDir * runningSpeed;
 }
@@ -73,7 +74,6 @@ else
 x += xspd;
 y += yspd;
 
-
 //Determine state from inputs
 if (!instance_exists(oEnemy)) //Force player to run right in intro
 {
@@ -87,30 +87,6 @@ if (!instance_exists(oEnemy)) //Force player to run right in intro
 	{
 		var enemy = instance_create_layer(300, 0, "Instances", oEnemy);
 		enemy.currentState = "teleportingIn";
-	}
-}
-else if (instance_exists(oEnemy) && (instance_nearest(x, y, oEnemy)).currentState == "teleportingIn")
-{
-	//Force the player to be still
-	if (currentState == "jumping" && !jumpKeyPressed && !grounded)
-	{
-		currentState = "jumping"; //Let the player fall if they are still in the air
-	}
-	else if (currentState == "pogoing" && !grounded)
-	{
-		currentState = "pogoing"; //Let the player fall if they are still in the air
-	}
-	else if (currentState == "crouching")
-	{
-		currentState = "crouching"; //Allow crouching
-		xspd = 0;
-		yspd = 0;
-	}
-	else
-	{
-		currentState = "idle"; //Be still
-		xspd = 0;
-		yspd = 0;
 	}
 }
 else if (currentState == "dead")
@@ -138,6 +114,20 @@ else if (currentHealth == 0 && grounded)
 	attackCounter = 0;
 	attackBuffered = false;
 	currentState = "dying";
+}
+else if ((pauseKeyPressed && !instance_exists(oPauseBox)) || paused)
+{
+	if (!instance_exists(oPauseBox))
+	{
+		instance_create_layer(112, 72, "Instances", oPauseBox);
+		paused = true;
+	}
+	xspd = 0;
+	yspd = 0;
+	grav = 0;
+	moveDir = 0;
+	image_speed = 0;
+	
 }
 else if (currentState == "stunned" && !grounded)
 {

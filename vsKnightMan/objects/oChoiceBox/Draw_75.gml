@@ -14,9 +14,11 @@ draw_text(270, 30, "no");
 //Drawing the selection box
 if (selection == 0) //yes
 {
-	draw_sprite(sSelectionBox, selectionAnimCounter div 30 % 2, 126, 26);
+	draw_sprite(sSelectionBoxLeft, selectionAnimCounter div 30 % 2, 122, 26);
+	draw_sprite(sSelectionBoxRight, selectionAnimCounter div 30 % 2, 122 + string_width("yes"), 26);
 }
 else //no
 {
-	draw_sprite(sSelectionBox, selectionAnimCounter div 30 % 2, 261, 26);
+	draw_sprite(sSelectionBoxLeft, selectionAnimCounter div 30 % 2, 261, 26);
+	draw_sprite(sSelectionBoxRight, selectionAnimCounter div 30 % 2, 261 + string_width("no"), 26);
 }

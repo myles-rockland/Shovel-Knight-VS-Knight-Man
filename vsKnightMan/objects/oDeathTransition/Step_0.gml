@@ -14,7 +14,7 @@ else if (deathTallyCounter < 300)
 {
 	if (deathTallyCounter == 240)
 	{
-		room_restart();
+		room_goto(mainBattle);
 	}
 	x -= 400/60;
 }

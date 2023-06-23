@@ -129,7 +129,11 @@ if (text_end > 0)
 	}
 	else
 	{
-		draw_sprite(sPlayerDialogue, 0, 0, 0);
+		if (global.armourType == 1)
+		{
+			draw_sprite(sPlayerDialogueAlt, 0, 0, 0);
+		}
+		else draw_sprite(sPlayerDialogue, 0, 0, 0);
 	}
 	
 	//Drawing coloured names

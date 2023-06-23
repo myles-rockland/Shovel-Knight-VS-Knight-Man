@@ -3,23 +3,43 @@
 switch (currentState)
 {
 	case "idle":
-		sprite_index = sPlayerIdle;
+		if (global.armourType == 1)
+		{
+			sprite_index = sPlayerIdleAlt;
+		}
+		else sprite_index = sPlayerIdle;
 	break;
 	case "crouching":
-		sprite_index = sPlayerCrouch;
+		if (global.armourType == 1)
+		{
+			sprite_index = sPlayerCrouchAlt;
+		}
+		else sprite_index = sPlayerCrouch;
 	break;
 	case "running":
 		if (abs(xspd) == runningInitSpeed)
 		{
-			sprite_index = sPlayerRunStart;
+			if (global.armourType == 1)
+			{
+				sprite_index = sPlayerRunStartAlt;
+			}
+			else sprite_index = sPlayerRunStart;
 		}
 		else
 		{
-			sprite_index = sPlayerRun;
+			if (global.armourType == 1)
+			{
+				sprite_index = sPlayerRunAlt;
+			}
+			else sprite_index = sPlayerRun;
 		}
 	break;
 	case "turning":
-		sprite_index = sPlayerTurn;
+		if (global.armourType == 1)
+		{
+			sprite_index = sPlayerTurnAlt;
+		}
+		else sprite_index = sPlayerTurn;
 		if (turningCounter == 8)
 		{
 			image_xscale *= -1;
@@ -28,36 +48,68 @@ switch (currentState)
 	case "jumping":
 		if (yspd <= 2)
 		{
-			sprite_index = sPlayerJump;
+			if (global.armourType == 1)
+			{
+				sprite_index = sPlayerJumpAlt;
+			}
+			else sprite_index = sPlayerJump;
 		}
 		else
 		{
-			sprite_index = sPlayerFall;
+			if (global.armourType == 1)
+			{
+				sprite_index = sPlayerFallAlt;
+			}
+			else sprite_index = sPlayerFall;
 		}
 	break;
 	case "attacking":
-		sprite_index = sPlayerAttack;
+		if (global.armourType == 1)
+		{
+			sprite_index = sPlayerAttackAlt;
+		}
+		else sprite_index = sPlayerAttack;
 	break;
 	case "pogoing":
-		sprite_index = sPlayerPogo;
+		if (global.armourType == 1)
+		{
+			sprite_index = sPlayerPogoAlt;
+		}
+		else sprite_index = sPlayerPogo;
 	break;
 	case "stunned":
-		sprite_index = sPlayerStunned;
+		if (global.armourType == 1)
+		{
+			sprite_index = sPlayerStunnedAlt;
+		}
+		else sprite_index = sPlayerStunned;
 	break;
 	case "dying":
-		sprite_index = sPlayerDying;
+		if (global.armourType == 1)
+		{
+			sprite_index = sPlayerDyingAlt;
+		}
+		else sprite_index = sPlayerDying;
 	break;
 	case "dead":
-		sprite_index = sPlayerDead;
+		if (global.armourType == 1)
+		{
+			sprite_index = sPlayerDeadAlt;
+		}
+		else sprite_index = sPlayerDead;
 	break;
 	case "victory":
-		sprite_index = sPlayerVictory;
+		if (global.armourType == 1)
+		{
+			sprite_index = sPlayerVictoryAlt;
+		}
+		else sprite_index = sPlayerVictory;
 	break;
 	case "armorGet":
 		sprite_index = sPlayerGetArmor;
 	break;
 }
-if (xspd != 0 && currentState != "stunned")
+if (xspd != 0 && currentState != "stunned" && currentState != "crouching")
 {
 	image_xscale = xspd * (1/abs(xspd));
 }

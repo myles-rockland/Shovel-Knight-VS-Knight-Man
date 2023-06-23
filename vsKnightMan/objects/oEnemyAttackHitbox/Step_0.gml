@@ -6,12 +6,20 @@ x = enemy.x + (enemy.image_xscale * 40);
 y = enemy.y;
 if (place_meeting(x, y, player) && player.currentState != "dead" && player.currentState != "dying" && player.currentState != "stunned" && player.invulnerableCounter == 0)
 {
-	player.currentState = "stunned";
-	player.yspd = -3;
-	player.currentHealth--;
-	if (player.currentHealth == 0)
+	if (player.currentState == "crouching" && global.armourType == 1 && player.image_xscale != enemy.image_xscale) // && player.image_xscale != enemy.image_xscale
 	{
-		player.yspd = -5;
+			player.xspd +=  7 * enemy.image_xscale;
+			
+	}
+	else
+	{
+		player.currentState = "stunned";
+		player.yspd = -3;
+		player.currentHealth--;
+		if (player.currentHealth == 0)
+		{
+			player.yspd = -5;
+		}
 	}
 }
 //Destroy self

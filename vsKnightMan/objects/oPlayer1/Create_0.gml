@@ -10,23 +10,7 @@ currentHealth = 8;
 maxHealth = currentHealth;
 gold = 0;
 magic = 30;
-armourType = 0; //0 for normal, 1 for Knight Man armour
 
-/*
-states =
-[
-	"idle",
-	"crouching",
-	"running",
-	"turning",
-	"jumping",
-	"attacking",
-	"pogoing",
-	"stunned",
-	"dying",
-	"dead"
-]
-*/
 currentState = "idle";
 
 grounded = false;
@@ -43,6 +27,7 @@ attackBuffered = false; //If an attack is buffered, automatically attack again
 attackCounter = 0; //Attack lasts 21 frames, though maybe I should use animation end event?
 pogoDelay = 0; //After attacking by pogo, wait 5 frames before pogo can attack again
 invulnerableCounter = 0; //Invulnerability lasts 120 frames after hitting ground while stunned
+paused = false;
 
 //Font stuff
 shovelFont = font_add("shovel-knight-extended.ttf", 6, false, false, 32, 128);

@@ -53,7 +53,7 @@ else if (confirmKeyPressed)
 	io_clear();
 	if (selection == 0) //Player selected yes
 	{
-		player.armourType = 1;
+		global.armourType = 1;
 		//Display crouching tooltip
 		instance_create_layer(112, 72, "Instances", oArmorGetBox);
 		instance_destroy();
