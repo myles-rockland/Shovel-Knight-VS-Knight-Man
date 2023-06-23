@@ -5,3 +5,4 @@ y = 0;
 shovelFont = font_add("shovel-knight-extended.ttf", 6, false, false, 32, 128);
 selectionAnimCounter = 0;
 selection = 0;
+audio_play_sound(sfxMenuConfirm, 0, false);

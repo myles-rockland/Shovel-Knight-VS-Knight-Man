@@ -9,7 +9,10 @@ if (place_meeting(x, y, player) && player.currentState != "dead" && player.curre
 	if (player.currentState == "crouching" && global.armourType == 1 && player.image_xscale != enemy.image_xscale) // && player.image_xscale != enemy.image_xscale
 	{
 			player.xspd +=  7 * enemy.image_xscale;
-			
+			if (enemy.throwingCounter % 5 == 0)
+			{
+				audio_play_sound(sfxSkBlock, 0, false);
+			}
 	}
 	else
 	{
@@ -20,6 +23,7 @@ if (place_meeting(x, y, player) && player.currentState != "dead" && player.curre
 		{
 			player.yspd = -5;
 		}
+		audio_play_sound(sfxSkHurt, 0, false);
 	}
 }
 //Destroy self

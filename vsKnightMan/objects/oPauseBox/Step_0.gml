@@ -48,6 +48,7 @@ if (downKeyPressed)
 	{
 		selection = 0;
 	}
+	audio_play_sound(sfxMenuCursorMove, 0, false);
 }
 else if (upKeyPressed)
 {
@@ -56,6 +57,7 @@ else if (upKeyPressed)
 	{
 		selection = array_length(choices) - 1;
 	}
+	audio_play_sound(sfxMenuCursorMove, 0, false);
 }
 else if (confirmKeyPressed)
 {
@@ -71,19 +73,23 @@ else if (confirmKeyPressed)
 			player.yspd = playerPrevYSpd;
 			enemy.xspd = enemyPrevXSpd;
 			enemy.yspd = enemyPrevYSpd;
+			audio_play_sound(sfxBack, 0, false);
 			instance_destroy();
 		break;
 		case "controls":
 			if (!instance_exists(oControlsBox))
 			{
 				instance_create_layer(112, 72, "Instances", oControlsBox);
+				audio_play_sound(sfxMenuConfirm, 0, false);
 			}
 		break;
 		case "back to title screen":
 			instance_create_layer(0, 0, "Instances", oCurtainTransitionOutro);
 			titleSelected = true;
+			audio_play_sound(sfxMenuConfirm, 0, false);
 		break;
 		case "quit to desktop":
+			audio_play_sound(sfxMenuConfirm, 0, false);
 			game_end();
 		break;
 	}

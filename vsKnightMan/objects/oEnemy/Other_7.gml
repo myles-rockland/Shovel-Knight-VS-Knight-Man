@@ -6,6 +6,7 @@ if (sprite_index == sEnemyDying)
 }
 else if (sprite_index = sEnemyTeleportIn)
 {
+	audio_play_sound(sfxKmTeleportIn, 0, false);
 	if (!playerMoved)
 	{
 		newDialogue(["\\0knight man: halt! have you seen a short, blue man pass through this area?", "\\0shovel knight: well met, but no, sorry.", "\\0knight man: very well, i shall be on my way, then."]);

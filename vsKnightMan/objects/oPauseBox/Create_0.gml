@@ -16,3 +16,6 @@ playerPrevXSpd = player.xspd;
 playerPrevYSpd = player.yspd;
 enemyPrevXSpd = enemy.xspd;
 enemyPrevYSpd = enemy.yspd;
+
+//Play pause sound
+audio_play_sound(sfxPause, 0, false);

@@ -39,6 +39,7 @@ if (rightKeyPressed)
 	{
 		selection = 0;
 	}
+	audio_play_sound(sfxMenuCursorMove, 0, false);
 }
 else if (leftKeyPressed)
 {
@@ -47,6 +48,7 @@ else if (leftKeyPressed)
 	{
 		selection = 1;
 	}
+	audio_play_sound(sfxMenuCursorMove, 0, false);
 }
 else if (confirmKeyPressed)
 {
@@ -56,12 +58,14 @@ else if (confirmKeyPressed)
 		global.armourType = 1;
 		//Display crouching tooltip
 		instance_create_layer(112, 72, "Instances", oArmorGetBox);
+		audio_play_sound(sfxSkArmourGet, 0, false);
 		instance_destroy();
 	}
 	else //player selected no
 	{
 		player.armourType = 0;
 		newDialogue(["\\0knight man: no, no, terrible! no honor! no \\schivalry\\0! no matter!", "\\0knight man: it is time to decide with this fight which of us is a \\strue warrior\\0!"]);
+		audio_play_sound(sfxMenuConfirm, 0, false);
 		instance_destroy();
 	}
 }

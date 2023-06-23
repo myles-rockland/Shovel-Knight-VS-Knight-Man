@@ -2,3 +2,4 @@
 // You can write your code in this editor
 outroCounter = 0; //play outro after 3 seconds
 instance_create_layer(0, 0, "Instances", oCurtainTransitionIntro);
+audio_play_sound(sfxYcgJingle, 0, false);

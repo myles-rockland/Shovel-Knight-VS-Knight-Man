@@ -51,6 +51,7 @@ if (downKeyPressed)
 	{
 		selection = 0;
 	}
+	audio_play_sound(sfxMenuCursorMove, 0, false);
 }
 else if (upKeyPressed)
 {
@@ -59,6 +60,7 @@ else if (upKeyPressed)
 	{
 		selection = array_length(choices) - 1;
 	}
+	audio_play_sound(sfxMenuCursorMove, 0, false);
 }
 else if (confirmKeyPressed)
 {
@@ -66,16 +68,19 @@ else if (confirmKeyPressed)
 	{
 		case "start game":
 			startGameCounter++;
+			audio_play_sound(sfxStartGame, 0, false);
 		break;
 		//Create a case for "controls" where it creates an instance of oControlsTip
 		case "controls":
 			if (!instance_exists(oControlsBox))
 			{
 				instance_create_layer(112, 72, "Instances", oControlsBox);
+				audio_play_sound(sfxMenuConfirm, 0, false);
 			}
 		break;
 		case "exit":
 			exitGameCounter++;
+			audio_play_sound(sfxMenuConfirm, 0, false);
 		break;
 	}
 }

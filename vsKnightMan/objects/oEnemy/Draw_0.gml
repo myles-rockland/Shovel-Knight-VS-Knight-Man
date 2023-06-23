@@ -66,6 +66,10 @@ switch (currentState)
 		sprite_index = sEnemyTeleportOut;
 		if (image_index > 2)
 		{
+			if (grounded)
+			{
+				audio_play_sound(sfxKmTeleportOut, 0, false);
+			}
 			yspd = -4;
 			image_speed = 0;
 		}

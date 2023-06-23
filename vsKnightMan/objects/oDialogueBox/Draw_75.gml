@@ -64,6 +64,14 @@ if (text_end > 0)
 		{
 			cutoff++;
 			timer = 0;
+			if (string_starts_with(text[text_current], "\\0knight man") && cutoff % 2 == 0)
+			{
+				audio_play_sound(sfxKmDialogue, 0, false);
+			}
+			else if (cutoff % 2 == 0)
+			{
+				audio_play_sound(sfxSkDialogue, 0, false);
+			}
 		}
 		else timer++;
 	}

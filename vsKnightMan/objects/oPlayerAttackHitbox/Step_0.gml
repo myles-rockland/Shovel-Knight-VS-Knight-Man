@@ -11,6 +11,11 @@ if (place_meeting(x, y, enemy))
 	{
 		enemy.currentHealth--;
 		enemy.hitCounter = 1;
+		audio_play_sound(sfxKmHurt, 0, false);
+	}
+	if (enemy.currentState == "blockingSide" && player.image_xscale != enemy.image_xscale)
+	{
+		audio_play_sound(sfxKmBlock, 0, false);
 	}
 	instance_destroy();
 }

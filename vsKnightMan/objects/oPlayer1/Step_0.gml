@@ -64,10 +64,16 @@ if (prevYSpd > 0 && grounded)
 	attackCounter = 0;
 	attackBuffered = false;
 	landed = true;
+	audio_play_sound(sfxSkLand, 0, false);
 }
 else
 {
 	landed = false;
+}
+
+if (yspd == jumpSpd + grav && currentState != "pogoing")
+{
+	audio_play_sound(sfxSkJump, 0, false);
 }
 
 //Apply movement
@@ -115,7 +121,7 @@ else if (currentHealth == 0 && grounded)
 	attackBuffered = false;
 	currentState = "dying";
 }
-else if ((pauseKeyPressed && !instance_exists(oPauseBox)) || paused)
+else if ((pauseKeyPressed && !instance_exists(oPauseBox)) && !instance_exists(oDialogueBox) && !instance_exists(oChoiceBox) || paused)
 {
 	if (!instance_exists(oPauseBox))
 	{
@@ -127,7 +133,6 @@ else if ((pauseKeyPressed && !instance_exists(oPauseBox)) || paused)
 	grav = 0;
 	moveDir = 0;
 	image_speed = 0;
-	
 }
 else if (currentState == "stunned" && !grounded)
 {
@@ -239,6 +244,10 @@ switch (currentState)
 			if (attackCounter == 4)
 			{
 				instance_create_layer(x + (image_xscale * 25), y - 16, "Instances", oPlayerAttackHitbox);
+				if (sprite_index == sPlayerAttack || sprite_index == sPlayerAttackAlt)
+				{
+					audio_play_sound(sfxSkAttack, 0, false);
+				}
 			}
 			if (attackKeyPressed && attackCounter > 6)
 			{
@@ -265,6 +274,10 @@ switch (currentState)
 		xspd = -image_xscale * 2;
 	break;
 	case "dying":
+		if (landed) //So it only plays once
+		{
+			audio_play_sound(sfxSkDying, 0, false);
+		}
 		invulnerableCounter = 0; //So player doesn't flash while dying
 		xspd = 0;
 		yspd = 0;
@@ -280,10 +293,14 @@ switch (currentState)
 		
 	break;
 	case "victory":
+		if (victoryCounter == 0)
+		{
+			audio_play_sound(sfxVictory, 0, false);
+		}
 		victoryCounter++;
 		xspd = 0;
 		yspd = 0;
-		if (victoryCounter == 600)
+		if (victoryCounter == 500)
 		{
 			instance_create_layer(0, 0, "Instances", oVictoryTransition);
 		}

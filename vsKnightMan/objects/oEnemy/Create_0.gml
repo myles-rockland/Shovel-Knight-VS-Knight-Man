@@ -5,6 +5,7 @@ maxHealth = 20;
 
 xspd = 0;
 yspd = 0;
+prevYSpd = yspd;
 grav = 0.3;
 
 currentState = "replenishing";

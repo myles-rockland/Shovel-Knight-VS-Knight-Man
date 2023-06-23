@@ -2,6 +2,8 @@
 // You can write your code in this editor
 var player = instance_nearest(x, y, oPlayer1);
 
+prevYSpd = yspd;
+
 //Apply gravity
 yspd += grav;
 
@@ -33,6 +35,10 @@ if (place_meeting(x + xspd, y + yspd, oSolid))
 	if (place_meeting(x, y + 1, oSolid))
 	{
 		grounded = true;
+		if (prevYSpd > 0 && currentState == "jumping")
+		{
+			audio_play_sound(sfxKmLand, 0, false);
+		}
 	}
 	yspd = 0;
 }
@@ -49,11 +55,23 @@ y += yspd;
 if (player.currentState == "pogoing" && place_meeting(x, y - 1, oPlayer1) && currentState != "swinging" && currentState != "dying" && currentState != "teleportingOut" && currentState != "crouching")
 {
 	player.yspd = player.jumpSpd;
+	if (player.pogoDelay == 0)
+	{
+		if (currentState == "blockingUp")
+		{
+			audio_play_sound(sfxSkPogoShield, 0, false);
+		}
+		else
+		{
+			audio_play_sound(sfxSkPogoReg, 0, false);
+		}
+	}
 	if (currentState != "replenishing" && currentState != "blockingUp" && player.pogoDelay == 0)
 	{
 		currentHealth--;
 		hitCounter = 1;
 		player.pogoDelay++;
+		audio_play_sound(sfxKmHurt, 0, false);
 	}
 }
 else if (currentState != "dying" && currentState != "teleportingOut" && currentState != "crouching" && player.currentState != "dead" && player.currentState != "dying" && player.currentState != "stunned" && player.invulnerableCounter == 0 && (place_meeting(x + xspd, y, oPlayer1) || place_meeting(x + xspd, y + yspd, oPlayer1)))
@@ -65,6 +83,7 @@ else if (currentState != "dying" && currentState != "teleportingOut" && currentS
 	{
 		player.yspd = -5;
 	}
+	audio_play_sound(sfxSkHurt, 0, false);
 }
 if (hitCounter > 0 && hitCounter < 30)
 {
@@ -135,6 +154,7 @@ switch (currentState)
 			jumpNum++;
 			yspd = -8;
 			xspd = (player.x - x)/48; //1.5 * sign(player.x - x)
+			audio_play_sound(sfxKmJump, 0, false);
 		}
 		else if (grounded)
 		{
@@ -176,6 +196,7 @@ switch (currentState)
 		{
 			bashReadyCounter = 0;
 			instance_create_layer(x - (16 * image_xscale), y, "Instances", oEnemyDashEffect);
+			audio_play_sound(sfxKmDash, 0, false);
 			currentState = "bashing";
 		}
 	break;
@@ -239,6 +260,10 @@ switch (currentState)
 		{
 			currentHealth++;
 			replenishCounter = 0;
+			if (currentHealth % 2 == 0)
+			{
+				audio_play_sound(sfxKmHealthFill, 0, false);
+			}
 		}
 		if (replenishedNum == 0)
 		{			
@@ -253,6 +278,7 @@ switch (currentState)
 			deathLaunched = true;
 			xspd = 2 * image_xscale; //image_xscale gets set in previous step, negativity depends on placement of check for death
 			yspd = -5;
+			audio_play_sound(sfxKmDying, 0, false);
 		}
 		else if (grounded && deathLaunched)
 		{
