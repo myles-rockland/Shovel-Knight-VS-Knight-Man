@@ -38,6 +38,20 @@ switch (currentState)
 	break;
 	case "replenishing":
 		sprite_index = sEnemyReplenish;
+		if (replenishedNum == 0)
+		{
+			sprite_index = sEnemyIdle;
+		}
+		if (currentHealth == 20 && sprite_index != sEnemyReplenish)
+		{
+			replenishCounter = 0;
+			replenishedNum++;
+			if (replenishedNum == 2)
+			{
+				replenished = true;
+			}
+			currentState = "idle";
+		}
 	break;
 	case "dying":
 		sprite_index = sEnemyDying;

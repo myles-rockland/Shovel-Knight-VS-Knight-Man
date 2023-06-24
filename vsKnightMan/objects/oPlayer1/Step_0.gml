@@ -300,9 +300,9 @@ switch (currentState)
 		victoryCounter++;
 		xspd = 0;
 		yspd = 0;
-		if (victoryCounter == 500)
+		if (!audio_is_playing(sfxVictory))
 		{
-			instance_create_layer(0, 0, "Instances", oVictoryTransition);
+			currentState = "idle";
 		}
 	break;
 }

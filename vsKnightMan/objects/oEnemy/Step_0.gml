@@ -291,7 +291,6 @@ switch (currentState)
 		{
 			xspd = 0;
 			currentState = "crouching";
-			newDialogue(["\\0knight man: \\wgaaah... \\0i am ashamed. i never thought i'd lose in this way.", "\\0shovel knight: you fought well, but i am not the one you seek!", "\\0shovel knight: i am shovel knight, on my quest to defeat the enchantress.", "\\0knight man: ...forgive me, shovel knight. i am knight man, on my quest to find a \\scerulean coward\\0!", "\\0shovel knight: all is forgiven, as a knight of the code of shovelry! i wish you well in your search, fellow knight.", "\\0knight man: likewise. for chivalry!", "\\0shovel knight: for shovelry!"]);
 		}
 		
 	break;
@@ -301,9 +300,37 @@ switch (currentState)
 		{
 			image_xscale = 1;
 		}
-		if (!instance_exists(oDialogueBox))
+		if (player.grounded && !instance_exists(oDialogueBox) && player.victoryCounter != 500)
 		{
-			currentState = "teleportingOut";
+			player.currentState = "victory";
+		}
+		else if (!audio_is_playing(sfxVictory) && player.grounded)
+		{
+			if (!instance_exists(oDialogueBox))
+			{
+				newDialogue(["\\0knight man: \\wgaaah... \\0i am ashamed. i never thought i'd lose in this way.", "\\0shovel knight: you fought well, but i am not the one you seek!", "\\0shovel knight: i am shovel knight, on my quest to defeat the enchantress.", "\\0knight man: ...forgive me, shovel knight. i am knight man, on my quest to find a \\scerulean coward\\0!", "\\0shovel knight: all is forgiven, as a knight of the code of shovelry! i wish you well in your search, fellow knight.", "\\0knight man: likewise. for chivalry!", "\\0shovel knight: for shovelry!"]);
+			}
+			//Force the player to be still
+			if (player.currentState == "jumping" && !player.grounded)
+			{
+				player.currentState = "jumping"; //Let the player fall if they are still in the air
+			}
+			else if (player.currentState == "pogoing")
+			{
+				player.currentState = "pogoing"; //Let the player fall if they are still in the air
+			}
+			else if (player.currentState == "crouching")
+			{
+				player.currentState = "crouching"; //Allow crouching
+				player.xspd = 0;
+				player.yspd = 0;
+			}
+			else
+			{
+				player.currentState = "idle"; //Be still
+				player.xspd = 0;
+				player.yspd = 0;
+			}
 		}
 	break;
 	case "teleportingIn":
@@ -340,11 +367,7 @@ switch (currentState)
 	break;
 	case "teleportingOut":
 		yspd = 0;
-		if (replenished)
-		{
-			player.currentState = "victory";
-		}
-		else if (y > 0)
+		if (y > 0)
 		{
 			//Force the player to be still
 			if (player.currentState == "jumping" && !player.grounded)
@@ -368,16 +391,21 @@ switch (currentState)
 				player.yspd = 0;
 			}
 		}
-		else if (y <= 0 && player.currentState != "idle" && !replenished)
+		else if (y <= 0 && player.currentState != "idle" && !replenished && !playerMoved)
 		{
 			playerMoved = true;
 			currentState = "teleportingIn";
+		}
+		else if (y <= 0 && replenished)
+		{
+			instance_create_layer(0, 0, "Instances", oVictoryTransition);
 		}
 	break;
 }
 if (currentHealth == 0 && !deathLaunched && replenished)
 {
 	currentState = "dying";
+	audio_stop_sound(sfxKmPull);
 	audio_stop_sound(musFight);
 	instance_destroy(oMusicFight);
 }

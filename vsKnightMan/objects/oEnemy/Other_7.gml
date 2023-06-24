@@ -17,13 +17,10 @@ else if (sprite_index = sEnemyTeleportIn)
 	}
 	currentState = "idle";
 }
-else if (sprite_index == sEnemyReplenish && image_index < 12)
+else if (currentHealth == 20 && sprite_index == sEnemyReplenish)
 {
-	if (currentHealth == 20)
-	{
-		replenishCounter = 0;
-		replenishedNum++;
-	}
+	replenishCounter = 0;
+	replenishedNum++;
 	if (replenishedNum == 2)
 	{
 		replenished = true;

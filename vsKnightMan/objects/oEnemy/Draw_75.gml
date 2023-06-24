@@ -18,4 +18,5 @@ if (currentState == "dying")
 else if (currentState == "crouching")
 {
 	game_set_speed(60, gamespeed_fps);
+	draw_set_color(c_white);
 }

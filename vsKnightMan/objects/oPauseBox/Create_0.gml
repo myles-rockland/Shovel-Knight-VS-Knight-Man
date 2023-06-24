@@ -17,5 +17,8 @@ playerPrevYSpd = player.yspd;
 enemyPrevXSpd = enemy.xspd;
 enemyPrevYSpd = enemy.yspd;
 
+//Pause music
+audio_pause_sound(musFight);
+
 //Play pause sound
 audio_play_sound(sfxPause, 0, false);

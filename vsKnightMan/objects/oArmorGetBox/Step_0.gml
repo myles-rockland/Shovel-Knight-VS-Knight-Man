@@ -8,11 +8,13 @@ player.xspd = 0;
 player.yspd = 0;
 enemy.currentState = (enemy.currentState == "crouching") ? "crouching" : "idle";
 
-
-if (confirmKeyPressed)
+if (!confirmed && image_index > 3 && image_index < 4)
 {
-	newDialogue(["\\0knight man: Your chivalry is honorable. now...", "\\0knight man: it is time to decide with this fight which of us is a \\strue warrior\\0!"]);
-	audio_play_sound(sfxArmourGetBoxClose, 0, false);
-	audio_play_sound(sfxArmourEquip, 0, false);
-	instance_destroy();
+	image_speed = 0;
+	if (confirmKeyPressed)
+	{	
+		confirmed = true;
+		audio_play_sound(sfxArmourGetBoxClose, 0, false);
+		image_speed = 1;
+	}
 }

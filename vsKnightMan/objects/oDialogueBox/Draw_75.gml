@@ -44,7 +44,7 @@ if (text_end > 0)
 		//If there isn't, the text is done
 		else
 		{
-			if (string_ends_with(text[text_current], "then."))
+			if (string_ends_with(text[text_current], "then.") || string_ends_with(text[text_current], "shovelry!"))
 			{
 				var enemy = instance_nearest(x, y, oEnemy);
 				enemy.currentState = "teleportingOut";
@@ -111,12 +111,24 @@ if (text_end > 0)
 			case "0": //normal
 			{
 				draw_set_colour(c_white);
+				if ((string_pos("blue man", text[text_current]) != 0 && i >= string_pos("blue man", text[text_current]) && i < string_pos("blue man", text[text_current]) + 8) || (string_pos_ext("shovel knight", text[text_current], string_pos(":", text[text_current])) != 0 && i >= string_pos_ext("shovel knight", text[text_current], string_pos(":", text[text_current])) && i < string_pos_ext("shovel knight", text[text_current], string_pos(":", text[text_current])) + 13))
+				{
+					draw_set_colour(#38c0fc);
+				}
+				if (string_pos_ext("knight man", text[text_current], string_pos(":", text[text_current])) != 0 && i >= string_pos_ext("knight man", text[text_current], string_pos(":", text[text_current])) && i < string_pos_ext("knight man", text[text_current], string_pos(":", text[text_current])) + 10)
+				{
+					draw_set_colour(#0000c4);
+				}
 				draw_text(tX+(space*charWidth), tY+(12*line), string_char_at(text[text_current], i));
 				break;
 			}
 			case "s": //shaky
 			{
 				draw_set_colour(c_white);
+				if (string_pos("cerulean coward", text[text_current]) != 0 && i >= string_pos("cerulean coward", text[text_current]) && i < string_pos("cerulean coward", text[text_current]) + 15)
+				{
+					draw_set_colour(#38c0fc);
+				}
 				draw_text(floor(tX+(space*charWidth)+random_range(-1,1)), floor(tY+(12*line)+random_range(-1,1)), string_char_at(text[text_current], i));
 				break;
 			}

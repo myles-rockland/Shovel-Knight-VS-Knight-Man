@@ -74,6 +74,7 @@ else if (confirmKeyPressed)
 			enemy.xspd = enemyPrevXSpd;
 			enemy.yspd = enemyPrevYSpd;
 			audio_play_sound(sfxBack, 0, false);
+			audio_resume_sound(musFight);
 			instance_destroy();
 		break;
 		case "controls":
