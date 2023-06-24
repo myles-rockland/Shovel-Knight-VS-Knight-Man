@@ -1,5 +1,17 @@
 /// @description Insert description here
 // You can write your code in this editor
+if (instance_exists(oEnemy))
+{
+	var enemy = instance_nearest(x, y, oEnemy);
+	if (enemy.currentState == "dying")
+	{
+		image_speed = 1/3;
+	}
+	else
+	{
+		image_speed = 1;
+	}
+}
 switch (currentState)
 {
 	case "idle":

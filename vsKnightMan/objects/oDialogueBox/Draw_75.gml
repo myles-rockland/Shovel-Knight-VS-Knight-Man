@@ -76,6 +76,11 @@ if (text_end > 0)
 			{
 				audio_play_sound(sfxSkDialogue, 0, false);
 			}
+			//Check for dialogue to play exclamation once
+			if (cutoff == string_pos(":", text[text_current]) + 1 && string_ends_with(text[text_current], "there\\0!"))
+			{
+				audio_play_sound(sfxExclamation, 0, false);
+			}
 		}
 		else timer++;
 	}
@@ -118,6 +123,10 @@ if (text_end > 0)
 				if (string_pos_ext("knight man", text[text_current], string_pos(":", text[text_current])) != 0 && i >= string_pos_ext("knight man", text[text_current], string_pos(":", text[text_current])) && i < string_pos_ext("knight man", text[text_current], string_pos(":", text[text_current])) + 10)
 				{
 					draw_set_colour(#0000c4);
+				}
+				if (string_pos_ext("the enchantress", text[text_current], string_pos(":", text[text_current])) != 0 && i >= string_pos_ext("the enchantress", text[text_current], string_pos(":", text[text_current])) && i < string_pos_ext("the enchantress", text[text_current], string_pos(":", text[text_current])) + 15)
+				{
+					draw_set_colour(#db01d3);
 				}
 				draw_text(tX+(space*charWidth), tY+(12*line), string_char_at(text[text_current], i));
 				break;

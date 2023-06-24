@@ -5,6 +5,7 @@ selection = 0;
 cursorAnimCounter = 0;
 cursorPosChange = 0;
 titleSelected = false;
+resumed = false;
 
 //Setting text formatting
 shovelFont = font_add("shovel-knight-extended.ttf", 6, false, false, 32, 128);

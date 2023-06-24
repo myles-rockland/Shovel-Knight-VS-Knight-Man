@@ -1,5 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
+
 switch (currentState)
 {
 	case "idle":
@@ -42,7 +43,7 @@ switch (currentState)
 		{
 			sprite_index = sEnemyIdle;
 		}
-		if (currentHealth == 20 && sprite_index != sEnemyReplenish)
+		if (currentHealth == 20 && sprite_index != sEnemyReplenish) //For refilling at the beginning
 		{
 			replenishCounter = 0;
 			replenishedNum++;

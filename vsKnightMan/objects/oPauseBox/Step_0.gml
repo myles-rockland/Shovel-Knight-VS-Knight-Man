@@ -40,58 +40,53 @@ else if (instance_exists(oControlsBox))
 	confirmKeyPressed = false;
 }
 
-//Change selection based on inputs
-if (downKeyPressed)
+if (image_index > 3 && image_index < 4 && !resumed)
 {
-	selection++;
-	if (selection == array_length(choices))
+	image_speed = 0;
+	//Change selection based on inputs
+	if (downKeyPressed)
 	{
-		selection = 0;
+		selection++;
+		if (selection == array_length(choices))
+		{
+			selection = 0;
+		}
+		audio_play_sound(sfxMenuCursorMove, 0, false);
 	}
-	audio_play_sound(sfxMenuCursorMove, 0, false);
-}
-else if (upKeyPressed)
-{
-	selection--;
-	if (selection == -1)
+	else if (upKeyPressed)
 	{
-		selection = array_length(choices) - 1;
+		selection--;
+		if (selection == -1)
+		{
+			selection = array_length(choices) - 1;
+		}
+		audio_play_sound(sfxMenuCursorMove, 0, false);
 	}
-	audio_play_sound(sfxMenuCursorMove, 0, false);
-}
-else if (confirmKeyPressed)
-{
-	switch(choices[selection])
+	else if (confirmKeyPressed)
 	{
-		case "resume":
-			enemy.image_speed = 1;
-			player.paused = false;
-			player.image_speed = 1;
-			player.grav = 0.3;
-			enemy.grav = 0.3;
-			player.xspd = playerPrevXSpd;
-			player.yspd = playerPrevYSpd;
-			enemy.xspd = enemyPrevXSpd;
-			enemy.yspd = enemyPrevYSpd;
-			audio_play_sound(sfxBack, 0, false);
-			audio_resume_sound(musFight);
-			instance_destroy();
-		break;
-		case "controls":
-			if (!instance_exists(oControlsBox))
-			{
-				instance_create_layer(112, 72, "Instances", oControlsBox);
+		switch(choices[selection])
+		{
+			case "resume":
+				audio_play_sound(sfxBack, 0, false);
+				image_speed = 1;
+				resumed = true;
+			break;
+			case "controls":
+				if (!instance_exists(oControlsBox))
+				{
+					instance_create_layer(112, 72, "Instances", oControlsBox);
+					audio_play_sound(sfxMenuConfirm, 0, false);
+				}
+			break;
+			case "back to title screen":
+				instance_create_layer(0, 0, "Instances", oCurtainTransitionOutro);
+				titleSelected = true;
 				audio_play_sound(sfxMenuConfirm, 0, false);
-			}
-		break;
-		case "back to title screen":
-			instance_create_layer(0, 0, "Instances", oCurtainTransitionOutro);
-			titleSelected = true;
-			audio_play_sound(sfxMenuConfirm, 0, false);
-		break;
-		case "quit to desktop":
-			audio_play_sound(sfxMenuConfirm, 0, false);
-			game_end();
-		break;
+			break;
+			case "quit to desktop":
+				audio_play_sound(sfxMenuConfirm, 0, false);
+				game_end();
+			break;
+		}
 	}
 }

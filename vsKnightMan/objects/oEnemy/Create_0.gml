@@ -27,3 +27,4 @@ replenishedNum = 0; //Number of times replenished, replenishes once at start of 
 deathLaunched = false;
 playerMoved = false;
 dyingCounter = 0;
+victoryDelay = 0;

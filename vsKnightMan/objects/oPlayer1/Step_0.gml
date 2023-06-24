@@ -50,10 +50,11 @@ if (place_meeting(x + xspd, y + ceil(yspd), oSolid))
 	}
 	grounded = true;
 	yspd = 0;
-	if (currentState == "stunned")
+	if (currentState == "stunned" && !bashed)
 	{
 		invulnerableCounter++;
 	}
+	bashed = false;
 }
 else
 {

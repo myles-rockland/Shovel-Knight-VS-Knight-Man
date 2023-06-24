@@ -4,17 +4,20 @@
 if (!titleSelected)
 {
 	draw_self();
-
-	draw_set_font(shovelFont);
-	draw_set_colour(c_white);
-
-	//Draw menu choices
-	for (var i = 0; i < array_length(choices); i++)
+	
+	if (image_index > 3 && image_index < 4)
 	{
-		draw_text(floor(119), floor(100 + (12 * i)), choices[i]);
-	}
+		draw_set_font(shovelFont);
+		draw_set_colour(c_white);
 
-	//Draw selection box
-	draw_sprite(sSelectionBoxLeft, cursorAnimCounter div 30 % 2, 115, 96 + (12 * selection));
-	draw_sprite(sSelectionBoxRight, cursorAnimCounter div 30 % 2, 106 + string_width(choices[selection]), 96 + (12 * selection));
+		//Draw menu choices
+		for (var i = 0; i < array_length(choices); i++)
+		{
+			draw_text(floor(119), floor(100 + (12 * i)), choices[i]);
+		}
+
+		//Draw selection box
+		draw_sprite(sSelectionBoxLeft, cursorAnimCounter div 30 % 2, 115, 96 + (12 * selection));
+		draw_sprite(sSelectionBoxRight, cursorAnimCounter div 30 % 2, 106 + string_width(choices[selection]), 96 + (12 * selection));
+	}
 }

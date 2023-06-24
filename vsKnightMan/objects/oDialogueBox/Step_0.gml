@@ -2,6 +2,10 @@
 // You can write your code in this editor
 var player = instance_nearest(x, y, oPlayer1);
 var enemy = instance_nearest(x, y, oEnemy);
+
+//Make player face enemy
+player.image_xscale = sign(enemy.x - player.x);
+
 //Force the player to be still
 if (player.currentState == "jumping" && !player.jumpKeyPressed && !player.grounded)
 {

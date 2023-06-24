@@ -17,15 +17,22 @@ else if (sprite_index = sEnemyTeleportIn)
 	}
 	currentState = "idle";
 }
-else if (currentHealth == 20 && sprite_index == sEnemyReplenish)
+else if (sprite_index == sEnemyReplenish)
 {
-	replenishCounter = 0;
-	replenishedNum++;
-	if (replenishedNum == 2)
+	if (currentHealth == 20)
 	{
-		replenished = true;
+		replenishCounter = 0;
+		replenishedNum++;
+		if (replenishedNum == 2)
+		{
+			replenished = true;
+		}
+		currentState = "idle";
 	}
-	currentState = "idle";
+	else
+	{
+		image_index = 4; //loop the animation
+	}
 }
 else if (sprite_index == sEnemyThrow)
 {

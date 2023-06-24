@@ -76,16 +76,26 @@ if (player.currentState == "pogoing" && place_meeting(x, y - 1, oPlayer1) && cur
 }
 else if (currentState != "dying" && currentState != "teleportingOut" && currentState != "crouching" && player.currentState != "dead" && player.currentState != "dying" && player.currentState != "stunned" && player.invulnerableCounter == 0 && (place_meeting(x + xspd, y, oPlayer1) || place_meeting(x + xspd, y + yspd, oPlayer1)))
 {
-	player.currentState = "stunned";
 	player.yspd = -3;
-	player.currentHealth--;
-	if (player.currentHealth == 0)
+	if ((currentState == "bashing" || currentState == "running") && player.currentState == "crouching" && global.armourType == 1 && player.image_xscale != image_xscale)
 	{
-		player.yspd = -5;
-		audio_stop_sound(musFight);
-		instance_destroy(oMusicFight);
+		bashStarted = false;
+		currentState = "bashReady";
+		player.bashed = true;
+		audio_play_sound(sfxSkShieldBreak, 0, false);
 	}
-	audio_play_sound(sfxSkHurt, 0, false);
+	else
+	{
+		player.currentHealth--;
+		if (player.currentHealth == 0)
+		{
+			player.yspd = -5;
+			audio_stop_sound(musFight);
+			instance_destroy(oMusicFight);
+		}
+		audio_play_sound(sfxSkHurt, 0, false);
+	}
+	player.currentState = "stunned";
 }
 if (hitCounter > 0 && hitCounter < 30)
 {
@@ -263,7 +273,7 @@ switch (currentState)
 		{
 			image_xscale = 1;
 		}
-		if (currentHealth < 20 && replenishCounter == 3)
+		if (currentHealth < 20 && replenishCounter >= 3 && ((image_index >= 4 && sprite_index = sEnemyReplenish) || (sprite_index == sEnemyIdle)))
 		{
 			currentHealth++;
 			replenishCounter = 0;
@@ -284,7 +294,7 @@ switch (currentState)
 		{
 			deathLaunched = true;
 			xspd = 2 * image_xscale; //image_xscale gets set in previous step, negativity depends on placement of check for death
-			yspd = -5;
+			yspd = -7;
 			audio_play_sound(sfxKmDying, 0, false);
 		}
 		else if (grounded && deathLaunched)
@@ -300,9 +310,13 @@ switch (currentState)
 		{
 			image_xscale = 1;
 		}
-		if (player.grounded && !instance_exists(oDialogueBox) && player.victoryCounter != 500)
+		if (player.grounded && !instance_exists(oDialogueBox) && player.victoryCounter < 500)
 		{
-			player.currentState = "victory";
+			victoryDelay++;
+			if (victoryDelay >= 30)
+			{
+				player.currentState = "victory";
+			}
 		}
 		else if (!audio_is_playing(sfxVictory) && player.grounded)
 		{
@@ -310,33 +324,38 @@ switch (currentState)
 			{
 				newDialogue(["\\0knight man: \\wgaaah... \\0i am ashamed. i never thought i'd lose in this way.", "\\0shovel knight: you fought well, but i am not the one you seek!", "\\0shovel knight: i am shovel knight, on my quest to defeat the enchantress.", "\\0knight man: ...forgive me, shovel knight. i am knight man, on my quest to find a \\scerulean coward\\0!", "\\0shovel knight: all is forgiven, as a knight of the code of shovelry! i wish you well in your search, fellow knight.", "\\0knight man: likewise. for chivalry!", "\\0shovel knight: for shovelry!"]);
 			}
-			//Force the player to be still
-			if (player.currentState == "jumping" && !player.grounded)
-			{
-				player.currentState = "jumping"; //Let the player fall if they are still in the air
-			}
-			else if (player.currentState == "pogoing")
-			{
-				player.currentState = "pogoing"; //Let the player fall if they are still in the air
-			}
-			else if (player.currentState == "crouching")
-			{
-				player.currentState = "crouching"; //Allow crouching
-				player.xspd = 0;
-				player.yspd = 0;
-			}
-			else
-			{
-				player.currentState = "idle"; //Be still
-				player.xspd = 0;
-				player.yspd = 0;
-			}
+		}
+		
+		//Force the player to be still
+		if (player.currentState == "jumping" && !player.grounded)
+		{
+			player.currentState = "jumping"; //Let the player fall if they are still in the air
+		}
+		else if (player.currentState == "pogoing")
+		{
+			player.currentState = "pogoing"; //Let the player fall if they are still in the air
+		}
+		else if (player.currentState == "crouching")
+		{
+			player.currentState = "crouching"; //Allow crouching
+			player.xspd = 0;
+			player.yspd = 0;
+		}
+		else if (player.currentState == "victory" && player.victoryCounter < 500)
+		{
+			player.currentState = "victory"; //Allow victory
+		}
+		else
+		{
+			player.currentState = "idle"; //Be still
+			player.xspd = 0;
+			player.yspd = 0;
 		}
 	break;
 	case "teleportingIn":
 		if (!grounded)
 		{
-			yspd = 4;
+			yspd = 5;
 		}
 		else
 		{
@@ -391,7 +410,7 @@ switch (currentState)
 				player.yspd = 0;
 			}
 		}
-		else if (y <= 0 && player.currentState != "idle" && !replenished && !playerMoved)
+		else if (y <= 0 && player.currentState != "idle" && !replenished && player.x > 96)
 		{
 			playerMoved = true;
 			currentState = "teleportingIn";
@@ -405,11 +424,12 @@ switch (currentState)
 if (currentHealth == 0 && !deathLaunched && replenished)
 {
 	currentState = "dying";
+	image_index = 0;
 	audio_stop_sound(sfxKmPull);
 	audio_stop_sound(musFight);
 	instance_destroy(oMusicFight);
 }
-if (currentHealth <= 6 && grounded && !replenished && currentState != "bashing" && currentState != "bashReady" && currentState != "jumping" && currentState != "teleportingIn" && currentState != "teleportingOut" && !instance_exists(oDialogueBox))
+if (currentHealth <= 6 && grounded && !replenished && currentState != "replenishing" && currentState != "bashing" && currentState != "bashReady" && currentState != "jumping" && currentState != "teleportingIn" && currentState != "teleportingOut" && !instance_exists(oDialogueBox))
 {
 	audio_stop_sound(sfxKmPull);
 	idleCounter = 0;

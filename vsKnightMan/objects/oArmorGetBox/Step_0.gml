@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-confirmKeyPressed = keyboard_check_pressed(ord("K"));
+confirmKeyPressed = (keyboard_check_pressed(ord("K")) || keyboard_check_pressed(vk_space));
 var player = instance_nearest(x, y, oPlayer1);
 var enemy = instance_nearest(x, y, oEnemy);
 player.currentState = "armorGet"; //Be still

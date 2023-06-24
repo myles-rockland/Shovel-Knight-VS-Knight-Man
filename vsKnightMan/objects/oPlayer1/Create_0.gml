@@ -23,6 +23,7 @@ deathTransCounter = 0; //Death transition starts 60 frames after death
 victoryCounter = 0; //Transition to main menu starts after 600 frames
 jumpSpd = -6.5;
 hasJumped = false;
+bashed = false;
 attackBuffered = false; //If an attack is buffered, automatically attack again
 attackCounter = 0; //Attack lasts 21 frames, though maybe I should use animation end event?
 pogoDelay = 0; //After attacking by pogo, wait 5 frames before pogo can attack again
