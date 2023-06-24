@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSound",
   "resourceVersion": "1.0",
-  "name": "sfxKmHealthFill",
+  "name": "musFight",
   "audioGroupId": {
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
@@ -10,14 +10,14 @@
   "bitRate": 128,
   "compression": 0,
   "conversionMode": 0,
-  "duration": 0.62695,
+  "duration": 47.486645,
   "parent": {
-    "name": "sfxKm",
-    "path": "folders/Sounds/sfxKm.yy",
+    "name": "Sounds",
+    "path": "folders/Sounds.yy",
   },
   "preload": false,
   "sampleRate": 44100,
-  "soundFile": "sfxKmHealthFill.mp3",
+  "soundFile": "musFight.ogg",
   "type": 0,
   "volume": 0.7,
 }

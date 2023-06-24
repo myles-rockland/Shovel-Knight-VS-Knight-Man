@@ -12,3 +12,4 @@ cursorPosChange = 0;
 shovelFont = font_add("shovel-knight-extended.ttf", 6, false, false, 32, 128);
 draw_set_font(shovelFont);
 draw_set_colour(c_white);
+instance_create_layer(0, 0, "Instances", oMusicTitle);

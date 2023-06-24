@@ -68,6 +68,8 @@ else if (confirmKeyPressed)
 	{
 		case "start game":
 			startGameCounter++;
+			audio_stop_sound(musTitle);
+			instance_destroy(oMusicTitle);
 			audio_play_sound(sfxStartGame, 0, false);
 		break;
 		//Create a case for "controls" where it creates an instance of oControlsTip

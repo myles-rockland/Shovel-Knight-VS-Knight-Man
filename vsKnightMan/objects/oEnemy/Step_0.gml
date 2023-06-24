@@ -82,6 +82,8 @@ else if (currentState != "dying" && currentState != "teleportingOut" && currentS
 	if (player.currentHealth == 0)
 	{
 		player.yspd = -5;
+		audio_stop_sound(musFight);
+		instance_destroy(oMusicFight);
 	}
 	audio_play_sound(sfxSkHurt, 0, false);
 }
@@ -181,6 +183,11 @@ switch (currentState)
 		if (throwingCounter == 4)
 		{
 			instance_create_layer(x + (image_xscale * 40), y, "Instances", oEnemyAttackHitbox);
+			audio_play_sound(sfxKmKnightCrusher, 0, false);
+		}
+		else if (throwingCounter == 20)
+		{
+			audio_play_sound(sfxKmPull, 0, false);
 		}
 		xspd = 0;
 	break;
@@ -371,9 +378,12 @@ switch (currentState)
 if (currentHealth == 0 && !deathLaunched && replenished)
 {
 	currentState = "dying";
+	audio_stop_sound(musFight);
+	instance_destroy(oMusicFight);
 }
 if (currentHealth <= 6 && grounded && !replenished && currentState != "bashing" && currentState != "bashReady" && currentState != "jumping" && currentState != "teleportingIn" && currentState != "teleportingOut" && !instance_exists(oDialogueBox))
 {
+	audio_stop_sound(sfxKmPull);
 	idleCounter = 0;
 	runningCounter = 0;
 	swingingCounter = 0;

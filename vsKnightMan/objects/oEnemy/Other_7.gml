@@ -33,5 +33,6 @@ else if (sprite_index == sEnemyReplenish && image_index < 12)
 else if (sprite_index == sEnemyThrow)
 {
 	throwingCounter = 0;
+	audio_stop_sound(sfxKmPull);
 	currentState = choose("jumping", "running");
 }

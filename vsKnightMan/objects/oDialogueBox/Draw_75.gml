@@ -53,6 +53,10 @@ if (text_end > 0)
 			{
 				instance_create_layer(0, 0, "Instances", oChoiceBox);
 			}
+			else if (string_ends_with(text[text_current], "warrior\\0!"))
+			{
+				instance_create_layer(0, 0, "Instances", oMusicFight);
+			}
 			instance_destroy();
 		}
 	}

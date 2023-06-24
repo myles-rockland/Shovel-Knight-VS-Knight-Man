@@ -22,6 +22,8 @@ if (place_meeting(x, y, player) && player.currentState != "dead" && player.curre
 		if (player.currentHealth == 0)
 		{
 			player.yspd = -5;
+			audio_stop_sound(musFight);
+			instance_destroy(oMusicFight);
 		}
 		audio_play_sound(sfxSkHurt, 0, false);
 	}
