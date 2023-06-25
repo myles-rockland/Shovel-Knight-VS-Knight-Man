@@ -108,6 +108,7 @@
     {"id":{"name":"sChoiceBox","path":"sprites/sChoiceBox/sChoiceBox.yy",},},
     {"id":{"name":"sEnemyDialogue","path":"sprites/sEnemyDialogue/sEnemyDialogue.yy",},},
     {"id":{"name":"sPlayerTurn","path":"sprites/sPlayerTurn/sPlayerTurn.yy",},},
+    {"id":{"name":"oGame","path":"objects/oGame/oGame.yy",},},
     {"id":{"name":"sEnemyBashReady","path":"sprites/sEnemyBashReady/sEnemyBashReady.yy",},},
     {"id":{"name":"sPlayerAttackHitbox","path":"sprites/sPlayerAttackHitbox/sPlayerAttackHitbox.yy",},},
     {"id":{"name":"sTitleScreen","path":"sprites/sTitleScreen/sTitleScreen.yy",},},

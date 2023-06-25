@@ -27,7 +27,7 @@ if (text_end > 0)
 	tY = 8;
 	
 	//Next Message
-	if (keyboard_check_pressed(ord("K")) || keyboard_check_pressed(vk_space))
+	if (keyboard_check_pressed(ord("K")) || keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0,gp_face1))
 	{
 		//If the current text has not finished being written, immediately finish it
 		if (cutoff < string_length(text[text_current]))

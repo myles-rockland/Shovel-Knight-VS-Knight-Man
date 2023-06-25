@@ -1,12 +1,12 @@
 /// @description Update every frame
 // You can write your code in this editor
-rightKey = keyboard_check(ord("D"));
-leftKey = keyboard_check(ord("A"));
-downKey = keyboard_check(ord("S"));
-jumpKeyPressed =  (keyboard_check_pressed(vk_space) || keyboard_check_pressed(ord("K")));
-jumpKeyHeld = (keyboard_check(vk_space) || keyboard_check(ord("K")));
-attackKeyPressed = keyboard_check_pressed(ord("J"));
-pauseKeyPressed = keyboard_check_pressed(vk_enter);
+rightKey = keyboard_check(ord("D")) || (gamepad_axis_value(0,gp_axislh) > 0);
+leftKey = keyboard_check(ord("A")) || (gamepad_axis_value(0,gp_axislh) < 0);
+downKey = keyboard_check(ord("S")) || (gamepad_axis_value(0,gp_axislv) > 0);
+jumpKeyPressed =  (keyboard_check_pressed(vk_space) || keyboard_check_pressed(ord("K"))) || (gamepad_button_check_pressed(0,gp_face1));
+jumpKeyHeld = (keyboard_check(vk_space) || keyboard_check(ord("K"))) || (gamepad_button_check(0,gp_face1));
+attackKeyPressed = keyboard_check_pressed(ord("J")) || (gamepad_button_check_pressed(0,gp_face2));
+pauseKeyPressed = keyboard_check_pressed(vk_enter) || (gamepad_button_check_pressed(0,gp_start));
 
 prevXSpd = xspd;
 prevYSpd = yspd;

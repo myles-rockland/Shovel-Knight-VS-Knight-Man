@@ -1,8 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
-downKeyPressed = keyboard_check_pressed(ord("S"));
-upKeyPressed = keyboard_check_pressed(ord("W"));
-confirmKeyPressed = (keyboard_check_pressed(ord("K")) || keyboard_check_pressed(vk_space));
+downKeyPressed = keyboard_check_pressed(ord("S")) || (gamepad_axis_value(0,gp_axislv) > 0);
+upKeyPressed = keyboard_check_pressed(ord("W")) || (gamepad_axis_value(0,gp_axislv) < 0);
+confirmKeyPressed = (keyboard_check_pressed(ord("K")) || keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0,gp_face1));
 
 cursorAnimCounter++; //Keep animating the cursor until a choice is made
 

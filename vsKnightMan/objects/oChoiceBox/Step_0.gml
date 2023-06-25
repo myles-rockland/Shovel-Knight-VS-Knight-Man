@@ -28,9 +28,9 @@ else
 enemy.currentState = (enemy.currentState == "crouching") ? "crouching" : "idle";
 
 //Check for input
-rightKeyPressed = keyboard_check_pressed(ord("D"));
-leftKeyPressed = keyboard_check_pressed(ord("A"));
-confirmKeyPressed = (keyboard_check_pressed(ord("K")) || keyboard_check_pressed(vk_space));
+rightKeyPressed = keyboard_check_pressed(ord("D")) || (gamepad_axis_value(0,gp_axislh) > 0);
+leftKeyPressed = keyboard_check_pressed(ord("A")) || (gamepad_axis_value(0,gp_axislh) < 0);
+confirmKeyPressed = (keyboard_check_pressed(ord("K")) || keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0,gp_face1));
 
 if (rightKeyPressed)
 {

@@ -7,6 +7,8 @@ cursorPosChange = 0;
 titleSelected = false;
 resumed = false;
 
+gamepad_set_axis_deadzone(0,0.7);
+
 //Setting text formatting
 shovelFont = font_add("shovel-knight-extended.ttf", 6, false, false, 32, 128);
 

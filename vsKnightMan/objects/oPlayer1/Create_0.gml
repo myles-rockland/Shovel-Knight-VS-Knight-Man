@@ -6,6 +6,8 @@ prevXSpd = xspd;
 prevYSpd = yspd;
 grav = 0.3;
 
+gamepad_set_axis_deadzone(0,0.7);
+
 currentHealth = 8;
 maxHealth = currentHealth;
 gold = 0;

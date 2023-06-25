@@ -84,6 +84,7 @@
     {"name":"sChoiceBox","order":16,"path":"sprites/sChoiceBox/sChoiceBox.yy",},
     {"name":"sEnemyDialogue","order":18,"path":"sprites/sEnemyDialogue/sEnemyDialogue.yy",},
     {"name":"sPlayerTurn","order":9,"path":"sprites/sPlayerTurn/sPlayerTurn.yy",},
+    {"name":"oGame","order":24,"path":"objects/oGame/oGame.yy",},
     {"name":"sEnemyBashReady","order":14,"path":"sprites/sEnemyBashReady/sEnemyBashReady.yy",},
     {"name":"sPlayerAttackHitbox","order":12,"path":"sprites/sPlayerAttackHitbox/sPlayerAttackHitbox.yy",},
     {"name":"sTitleScreen","order":14,"path":"sprites/sTitleScreen/sTitleScreen.yy",},

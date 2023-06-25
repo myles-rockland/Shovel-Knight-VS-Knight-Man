@@ -8,6 +8,8 @@ exitGameCounter = 0; //When player selects "exit", wait 2 seconds before exiting
 cursorAnimCounter = 0;
 cursorPosChange = 0;
 
+gamepad_set_axis_deadzone(0,0.7);
+
 //Setting text formatting
 shovelFont = font_add("shovel-knight-extended.ttf", 6, false, false, 32, 128);
 draw_set_font(shovelFont);
