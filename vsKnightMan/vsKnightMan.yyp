@@ -32,6 +32,11 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"ancientArmor","folderPath":"folders/Sprites/sPlayer/ancientArmor.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"persistent","folderPath":"folders/Objects/persistent.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"music","folderPath":"folders/Objects/music.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"gui","folderPath":"folders/Objects/gui.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"popups","folderPath":"folders/Objects/popups.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"transitions","folderPath":"folders/Objects/transitions.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"shovel-knight-extended.ttf","CopyToMask":-1,"filePath":"datafiles",},
