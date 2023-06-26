@@ -1,8 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-downKeyPressed = keyboard_check_pressed(ord("S")) || (gamepad_axis_value(0,gp_axislv) > 0);
-upKeyPressed = keyboard_check_pressed(ord("W")) || (gamepad_axis_value(0,gp_axislv) < 0);
-confirmKeyPressed = (keyboard_check_pressed(ord("K")) || keyboard_check_pressed(vk_space)) || (gamepad_button_check_pressed(0,gp_face1));
+input = instance_nearest(x, y, oInput);
 
 cursorAnimCounter++; //Keep animating the cursor until a choice is made
 
@@ -38,13 +36,13 @@ else if (exitGameCounter > 0)
 }
 else if (instance_exists(oControlsBox))
 {
-	downKeyPressed = false;
-	upKeyPressed = false;
-	confirmKeyPressed = false;
+	input.downPressed = false;
+	input.upPressed = false;
+	input.confirmPressed = false;
 }
 
 //Change selection based on inputs
-if (downKeyPressed)
+if (input.downPressed)
 {
 	selection++;
 	if (selection == array_length(choices))
@@ -53,7 +51,7 @@ if (downKeyPressed)
 	}
 	audio_play_sound(sfxMenuCursorMove, 0, false);
 }
-else if (upKeyPressed)
+else if (input.upPressed)
 {
 	selection--;
 	if (selection == -1)
@@ -62,7 +60,7 @@ else if (upKeyPressed)
 	}
 	audio_play_sound(sfxMenuCursorMove, 0, false);
 }
-else if (confirmKeyPressed)
+else if (input.confirmPressed)
 {
 	switch(choices[selection])
 	{
