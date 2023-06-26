@@ -1,6 +1,5 @@
 /// @description Insert description here
 // You can write your code in this editor
-input = instance_nearest(x, y, oInput);
 
 cursorAnimCounter++; //Keep animating the cursor until a choice is made
 
