@@ -1,16 +1,19 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oYcgSplash",
+  "name": "oPlayer",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":7,"eventType":7,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":74,"eventType":8,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "transitions",
-    "path": "folders/Objects/transitions.yy",
+    "name": "Objects",
+    "path": "folders/Objects.yy",
   },
   "parentObjectId": null,
   "persistent": false,
@@ -29,9 +32,12 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sYcgSplash",
-    "path": "sprites/sYcgSplash/sYcgSplash.yy",
+    "name": "sPlayer",
+    "path": "sprites/sPlayer/sPlayer.yy",
   },
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "sPlayer",
+    "path": "sprites/sPlayer/sPlayer.yy",
+  },
   "visible": true,
 }

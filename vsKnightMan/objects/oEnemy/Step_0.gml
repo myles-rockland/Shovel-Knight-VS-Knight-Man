@@ -24,10 +24,10 @@ else
 	walled = false;
 }
 
-if (place_meeting(x + xspd, y + yspd, oSolid))
+if (place_meeting(x + xspd, y + ceil(yspd), oSolid))
 {
 	y = round(y);
-	var _pixelCheck = sign(yspd) * abs(grav);
+	var _pixelCheck = sign(yspd);
 	while !place_meeting(x + xspd, y + _pixelCheck, oSolid)
 	{
 		y += _pixelCheck;
