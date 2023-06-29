@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-//draw_text(floor(x), floor(y - 40), (pogoDelay)); //debugging, comment in/out to view values
+//draw_text(floor(x), floor(y - 40), sprite_get_name(sprite_index)); //debugging, comment in/out to view values
 
 //Draw player health bubbles
 var numBubbles = (maxHealth div 2) + (maxHealth % 2);

@@ -1,6 +1,6 @@
 /// @description Update on instance creation
 // You can write your code in this editor
-input = instance_nearest(oInput);
+input = instance_nearest(x, y, oInput);
 
 xspd = 0;
 yspd = 0;
@@ -40,16 +40,17 @@ idleState = function()
 {
 	xspd = 0;
 	yspd = 0;
-	sprite_index = ((instance_nearest(x,y,oGame)).armourType == 0) ? sPlayerIdle : sPlayerIdleAlt;
+	sprite_index = sPlayerIdle;
 	if (input.downHeld)
 	{
-		sprite_index = ((instance_nearest(x,y,oGame)).armourType == 0) ? sPlayerCrouch : sPlayerCrouchAlt;
+		sprite_index = sPlayerCrouch;
 	}
 	if (!dialogueActive)
 	{
 		//Can run, jump, or attack out of idle
 		if (input.jumpKeyPressed)
 		{
+			yspd = -6.5;
 			state = jumpState;
 			image_index = 0;
 		}
@@ -68,8 +69,78 @@ idleState = function()
 }
 jumpState = function()
 {
+	var moveDir = (input.rightHeld - input.leftHeld);
+	if (input.rightHeld && input.leftHeld)
+	{
+		moveDir = -1;
+	}
+	xspd = moveDir * maxRunSpeed;
+	if (yspd <= 2)
+	{
+		sprite_index = sPlayerJump;
+	}
+	else
+	{
+		sprite_index = sPlayerFall;
+	}
+	if (yspd < 0 && !input.jumpHeld)
+	{
+		yspd = max(yspd, yspd * (3/4));
+	}
+	if (landed)
+	{
+		audio_play_sound(sfxSkLand, 0, false);
+		state = idleState;
+		image_index = 0;
+	}
+	else if (input.downPressed)
+	{
+		state = pogoState;
+		image_index = 0;
+	}
+	else if (input.attackPressed)
+	{
+		state = attackState;
+		image_index = 0;
+	}
+}
+pogoState = function()
+{
+	var moveDir = (input.rightHeld - input.leftHeld);
+	if (input.rightHeld && input.leftHeld)
+	{
+		moveDir = -1;
+	}
+	xspd = moveDir * maxRunSpeed;
+	sprite_index = sPlayerPogo;
+	if (yspd < 0 && !input.jumpHeld)
+	{
+		yspd = max(yspd, yspd * (3/4));
+	}
+	if (landed)
+	{
+		audio_play_sound(sfxSkLand, 0, false);
+		state = idleState;
+		image_index = 0;
+	}
+	else if (input.attackPressed)
+	{
+		state = attackState;
+		image_index = 0;
+	}
 }
 runState = function()
 {}
 attackState = function()
-{}
+{
+	if (landed)
+	{
+		state = idleState;
+		image_index = 0;
+	}
+	else if (input.jumpPressed)
+	{
+		state = jumpState;
+		image_index = 0;
+	}
+}
