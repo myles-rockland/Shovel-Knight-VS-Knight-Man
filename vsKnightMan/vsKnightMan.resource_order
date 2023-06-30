@@ -163,6 +163,7 @@
     {"name":"sCurtainTransitionOutro","order":12,"path":"sprites/sCurtainTransitionOutro/sCurtainTransitionOutro.yy",},
     {"name":"sPlayerDead","order":10,"path":"sprites/sPlayerDead/sPlayerDead.yy",},
     {"name":"oCurtainTransitionOutro","order":1,"path":"objects/oCurtainTransitionOutro/oCurtainTransitionOutro.yy",},
+    {"name":"emptyNewPlayer","order":8,"path":"rooms/emptyNewPlayer/emptyNewPlayer.yy",},
     {"name":"sEnemyTeleportOut","order":15,"path":"sprites/sEnemyTeleportOut/sEnemyTeleportOut.yy",},
   ],
 }

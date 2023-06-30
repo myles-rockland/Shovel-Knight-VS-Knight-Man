@@ -196,9 +196,11 @@
     {"id":{"name":"sCurtainTransitionOutro","path":"sprites/sCurtainTransitionOutro/sCurtainTransitionOutro.yy",},},
     {"id":{"name":"sPlayerDead","path":"sprites/sPlayerDead/sPlayerDead.yy",},},
     {"id":{"name":"oCurtainTransitionOutro","path":"objects/oCurtainTransitionOutro/oCurtainTransitionOutro.yy",},},
+    {"id":{"name":"emptyNewPlayer","path":"rooms/emptyNewPlayer/emptyNewPlayer.yy",},},
     {"id":{"name":"sEnemyTeleportOut","path":"sprites/sEnemyTeleportOut/sEnemyTeleportOut.yy",},},
   ],
   "RoomOrderNodes": [
+    {"roomId":{"name":"emptyNewPlayer","path":"rooms/emptyNewPlayer/emptyNewPlayer.yy",},},
     {"roomId":{"name":"titleScreen","path":"rooms/titleScreen/titleScreen.yy",},},
     {"roomId":{"name":"firstBattle","path":"rooms/firstBattle/firstBattle.yy",},},
     {"roomId":{"name":"mainBattle","path":"rooms/mainBattle/mainBattle.yy",},},

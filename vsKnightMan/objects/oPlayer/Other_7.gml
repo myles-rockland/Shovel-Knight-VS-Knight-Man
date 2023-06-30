@@ -1,8 +1,21 @@
 /// @description Insert description here
 // You can write your code in this editor
+if (sprite_index == sPlayerAttack || sprite_index == sPlayerAttackAlt)
+{
+	enemyHitFromAttack = false;
+	if (attackBuffered)
+	{
+		attackBuffered = false;
+		state = attackState;
+	}
+	else
+	{
+		state = idleState;
+	}
+}
 if (sprite_index == sPlayerDying || sprite_index == sPlayerDyingAlt)
 {
-	currentState = "dead";
+	state = deadState;
 }
 if (sprite_index == sPlayerGetArmor)
 {

@@ -1,6 +1,9 @@
 /// @description Update every frame
 // You can write your code in this editor
 
+//Apply gravity
+yspd += grav;
+
 //Collision, using mask index instead of sprite index
 var sprite_bbox_top = sprite_get_bbox_top(mask_index) - sprite_get_yoffset(mask_index);
 var sprite_bbox_bottom = sprite_get_bbox_bottom(mask_index) - sprite_get_yoffset(mask_index) + 1;
@@ -60,7 +63,7 @@ else
 }
 
 //Run state machine
-currentState();
+state();
 
 //Invulnerability
 if (invulnerableCounter > 0 && invulnerableCounter < 120)
