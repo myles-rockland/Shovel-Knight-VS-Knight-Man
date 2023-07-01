@@ -4,7 +4,7 @@ if (sprite_index != sPlayerGetArmor && (instance_nearest(x, y, oGame)).armourTyp
 {
 	sprite_index = asset_get_index(sprite_get_name(sprite_index) + "Alt");
 }
-if (xspd != 0 && state != stunState && state != attackState && state != dyingState && state != deadState)
+if (xspd != 0 && state != stunState && state != attackState && state != dyingState)
 {
 	image_xscale = sign(xspd);
 }

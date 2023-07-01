@@ -15,6 +15,7 @@
   "frames": [
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a2dfccef-7a1f-418c-a67a-7059823ba911",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"86d2d75e-1ae2-402e-af12-b1a6f0eba591",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a83f9291-cae3-4568-8384-5cfdff57a584",},
   ],
   "gridX": 0,
   "gridY": 0,
@@ -44,7 +45,7 @@
     "events": {"resourceType":"KeyframeStore<MessageEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "eventStubScript": null,
     "eventToFunction": {},
-    "length": 2.0,
+    "length": 3.0,
     "lockOrigin": false,
     "moments": {"resourceType":"KeyframeStore<MomentsEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "playback": 1,
@@ -57,6 +58,7 @@
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
             {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"a2dfccef-7a1f-418c-a67a-7059823ba911","path":"sprites/sPlayerDying/sPlayerDying.yy",},},},"Disabled":false,"id":"f841bfd5-e90b-4e57-adce-f9b533d305c5","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
             {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"86d2d75e-1ae2-402e-af12-b1a6f0eba591","path":"sprites/sPlayerDying/sPlayerDying.yy",},},},"Disabled":false,"id":"b030c0af-6f7e-4bb9-9cda-1581169ae87a","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"a83f9291-cae3-4568-8384-5cfdff57a584","path":"sprites/sPlayerDying/sPlayerDying.yy",},},},"Disabled":false,"id":"b09ae2b0-f2e9-4905-9afb-84b514bcdef6","IsCreationKey":false,"Key":2.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

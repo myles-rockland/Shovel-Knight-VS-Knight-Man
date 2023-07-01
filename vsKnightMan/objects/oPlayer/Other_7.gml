@@ -15,7 +15,8 @@ if (sprite_index == sPlayerAttack || sprite_index == sPlayerAttackAlt)
 }
 if (sprite_index == sPlayerDying || sprite_index == sPlayerDyingAlt)
 {
-	state = deadState;
+	deathTransCounter++;
+	image_speed = 0;
 }
 if (sprite_index == sPlayerGetArmor)
 {

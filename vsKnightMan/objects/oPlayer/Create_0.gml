@@ -53,6 +53,7 @@ idleState = function()
 			yspd = -6.5;
 			state = jumpState;
 			image_index = 0;
+			audio_play_sound(sfxSkJump, 0, false);
 		}
 		else if (input.rightHeld || input.leftHeld)
 		{
@@ -150,7 +151,7 @@ runState = function()
 		runLerpInc = 0;
 		state = turnState;
 	}
-	else
+	elsek
 	{
 		xspd = moveDir * lerp(0, maxRunSpeed, clamp(runLerpInc, 0, 1));
 		sprite_index = (abs(xspd) == maxRunSpeed) ? sPlayerRun : sPlayerRunStart;
@@ -165,6 +166,7 @@ runState = function()
 			yspd = -6.5;
 			state = jumpState;
 			image_index = 0;
+			audio_play_sound(sfxSkJump, 0, false);
 		}
 		else if (input.attackPressed)
 		{
@@ -196,6 +198,7 @@ turnState = function()
 		yspd = -6.5;
 		state = jumpState;
 		image_index = 0;
+		audio_play_sound(sfxSkJump, 0, false);
 	}
 }
 attackState = function() //Deal with exit in animation end
@@ -262,17 +265,35 @@ stunState = function()
 	xspd = -image_xscale * 2;
 	if (landed)
 	{
-		state = idleState;
-		if (input.rightHeld || input.leftHeld)
+		if (currentHealth != 0)
 		{
-			state = runState;
+			state = idleState;
+			if (input.rightHeld || input.leftHeld)
+			{
+				state = runState;
+			}
+			image_index = 0;
+			invulnerableCounter++;
 		}
-		image_index = 0;
-		invulnerableCounter++;
+		else
+		{
+			state = dyingState;
+			image_index = 0;
+			audio_play_sound(sfxSkDying, 0, false);
+		}
 	}
 }
 dyingState = function()
-{}
-deadState = function()
-{}
+{
+	xspd = 0;
+	yspd = 0;
+	if (deathTransCounter > 0 && deathTransCounter < 60)
+	{
+		deathTransCounter++;
+	}
+	else if (deathTransCounter == 60)
+	{
+		instance_create_layer(0, 0, "Instances", oDeathTransition);
+	}
+}
 state = idleState;
